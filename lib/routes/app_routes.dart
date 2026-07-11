@@ -5,6 +5,6 @@ class AppRoutes {
   static const initialRoute = "/navigator";
 
   static Map<String, Widget Function(BuildContext)> routes = {
-  "/navigator": (BuildContext context) => NavigatorScreen(),
+  "/navigator": (BuildContext context) => const NavigatorScreen(),
   };
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,7 +22,7 @@ class HomeScreen extends StatelessWidget {
                 children: <TextSpan>[
                   TextSpan(
                     text: '.',
-                    style: GoogleFonts.poppins(color: Color(0xFFF7C53A), fontSize: mediaQuery.size.height * 0.04 , fontWeight: FontWeight.bold),
+                    style: GoogleFonts.poppins(color: const Color(0xFFF7C53A), fontSize: mediaQuery.size.height * 0.04 , fontWeight: FontWeight.bold),
                   ),
                 ],
               )),
