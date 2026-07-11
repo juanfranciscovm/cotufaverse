@@ -1,10 +1,10 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import "package:cotufaverse/screens/app_screens.dart";
 
 class AppRoutes {
-  static const initialRoute = "/home";
+  static const initialRoute = "/navigator";
 
-  //static Map<String, Widget Function(BuildContext)> routes = {
-  //"/home": (BuildContext context) => const blabla(),
-  //};
+  static Map<String, Widget Function(BuildContext)> routes = {
+  "/navigator": (BuildContext context) => NavigatorScreen(),
+  };
 }

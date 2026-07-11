@@ -3,7 +3,7 @@ import 'package:cotufaverse/screens/app_screens.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
 
 class NavigatorScreen extends StatefulWidget {
-  const NavigatorScreen({Key? key}) : super(key: key);
+  const NavigatorScreen({super.key});
 
   @override
   State<NavigatorScreen> createState() => _NavigatorState();
@@ -11,24 +11,19 @@ class NavigatorScreen extends StatefulWidget {
 
 class _NavigatorState extends State<NavigatorScreen> {
   int _currentIndex = 0;
-  final List<Widget> _screens = [];
-
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       backgroundColor: const Color.fromARGB(255, 7, 17, 57),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            colors: [
-              Color.fromARGB(255, 14, 57, 98),
-              Color.fromARGB(255, 7, 17, 57),
-            ],
-          ),
-        ),
-
+      body: Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.08),
         child: IndexedStack(index: _currentIndex, children: _screens),
       ),
 
