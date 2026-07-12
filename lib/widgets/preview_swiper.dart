@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:cotufaverse/widgets/category_label.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PreviewSwiper extends StatefulWidget {
   const PreviewSwiper({super.key});
@@ -10,7 +11,7 @@ class PreviewSwiper extends StatefulWidget {
 }
 
 class _PreviewSwiperState extends State<PreviewSwiper> {
-  static const double _aspectRatio = 4 / 3 ;
+  static const double _aspectRatio = 4 / 9;
 
   @override
   Widget build(BuildContext context) {
@@ -58,18 +59,22 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 40,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'El asesinato de Jesse James por el cobarde Robert Ford',
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
+                          fontFamily: 'Agrandir',
                           color: Colors.white,
-                          fontSize: itemHeight * 0.08,
+                          fontSize: itemHeight * 0.045,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -78,16 +83,22 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                         children: [
                           Text(
                             '10/10',
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                               color: Colors.white,
-                              fontSize: itemHeight * 0.04,
+                              fontSize: itemHeight * 0.03,
                             ),
                           ),
                           const SizedBox(width: 5),
                           Icon(
                             Icons.star,
                             color: const Color(0xFFF7C53A),
-                            size: itemHeight * 0.08,
+                            size: itemHeight * 0.07,
+                          ),
+                          const SizedBox(width: 5),
+                          Icon(
+                            Icons.eighteen_up_rating_outlined,
+                            color: Colors.white,
+                            size: itemHeight * 0.07,
                           ),
                         ],
                       ),
@@ -96,11 +107,12 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                         'Consectetur reprehenderit cillum eiusmod culpa eiusmod aute cillum ullamco adipisicing duis do irure. Irure eu quis nulla labore in exercitation ipsum cillum esse sit. Eiusmod ut laboris et adipisicing excepteur non commodo aute. Cillum aliquip nisi in Lorem consequat veniam voluptate sunt sit ut sit. Velit voluptate Lorem do deserunt reprehenderit. Id aute ad duis magna irure nulla. Ex tempor do elit aute commodo occaecat labore non id nulla ut ipsum est qui.',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           color: Colors.white,
-                          fontSize: itemHeight * 0.05,
+                          fontSize: itemHeight * 0.03,
                         ),
                       ),
+
                       const SizedBox(height: 10),
                       Row(
                         children: [
@@ -108,12 +120,12 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                             itemHeight: itemHeight,
                             category: 'Acción',
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 10),
                           CategoryLabel(
                             itemHeight: itemHeight,
                             category: 'Aventura',
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 10),
                           CategoryLabel(
                             itemHeight: itemHeight,
                             category: 'Misterio',

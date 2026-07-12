@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CardSwiper extends StatefulWidget {
   const CardSwiper({super.key});
@@ -94,9 +95,9 @@ class PosterMovieCard extends StatelessWidget {
                   'El asesinato de Jesse James por el cobarde Robert Ford',
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     color: Colors.white,
-                    fontSize: itemHeight * 0.07,
+                    fontSize: itemHeight * 0.065,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -106,7 +107,7 @@ class PosterMovieCard extends StatelessWidget {
                   children: [
                     Text(
                       '10/10',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: itemHeight * 0.05,
                       ),
