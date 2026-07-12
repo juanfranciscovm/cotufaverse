@@ -32,8 +32,8 @@ dependencies:
     sdk: flutter
   url_launcher: ^6.3.2
   curved_labeled_navigation_bar: ^2.0.6 #latest version
-  font_awesome_flutter: ^11.0.0
   google_fonts: ^8.1.0
+  card_swiper: ^3.0.1
 
 
 dev_dependencies:
@@ -59,9 +59,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  #assets:
-  # - assets/
-  # - assets/images
+  assets:
+  - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

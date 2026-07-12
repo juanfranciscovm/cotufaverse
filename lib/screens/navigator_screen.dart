@@ -20,12 +20,7 @@ class _NavigatorState extends State<NavigatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      backgroundColor: const Color.fromARGB(255, 7, 17, 57),
-      body: Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.08),
-        child: IndexedStack(index: _currentIndex, children: _screens),
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
 
       bottomNavigationBar: NavBar(
         currentIndex: _currentIndex,
