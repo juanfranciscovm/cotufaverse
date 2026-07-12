@@ -1,3 +1,4 @@
+import 'package:cotufaverse/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,29 +7,45 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData mediaQuery = MediaQuery.of(context);
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF232B4D),
-      body: SafeArea(
-        bottom: false,
-        child: Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(mediaQuery.size.width * 0.03),
-              child: RichText(text: TextSpan(
-                text: 'Top Peliculas',
-                style: GoogleFonts.poppins(color: Colors.white ,fontSize: mediaQuery.size.height * 0.04, fontWeight: FontWeight.bold),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '.',
-                    style: GoogleFonts.poppins(color: const Color(0xFFF7C53A), fontSize: mediaQuery.size.height * 0.04 , fontWeight: FontWeight.bold),
+      backgroundColor: const Color(0xFF0C123F),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          top: false,
+          bottom: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const PreviewSwiper(),
+              Padding(
+                padding: EdgeInsets.all(size.width * 0.03),
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Top Peliculas',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: size.height * 0.04,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: '.',
+                        style: GoogleFonts.poppins(
+                          color: const Color(0xFFF7C53A),
+                          fontSize: size.height * 0.04,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              )),
-            ),
-            
-          ],
+                ),
+              ),
+              const CardSwiper(),
+              SizedBox(height: size.height * 0.1),
+            ],
+          ),
         ),
       ),
     );

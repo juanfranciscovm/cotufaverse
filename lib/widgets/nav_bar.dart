@@ -10,12 +10,12 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData mediaQuery = MediaQuery.of(context);
+    final size = MediaQuery.of(context).size;
 
     return CurvedNavigationBar(
       index: currentIndex,
-      height: mediaQuery.size.height * 0.10,
-      backgroundColor: const Color(0xFF232B4D),
+      height: size.height * 0.10,
+      backgroundColor: const Color(0xFF0C123F),
       color: Colors.black38,
       buttonBackgroundColor: const Color(0xFFF7C53A),
       animationDuration: const Duration(milliseconds: 350),
@@ -28,24 +28,24 @@ class NavBar extends StatelessWidget {
                 ? Icons.local_movies_rounded
                 : Icons.local_movies_outlined,
             color: Colors.white,
-            size: mediaQuery.size.height * 0.035,
+            size: size.height * 0.035,
           ),
           label: 'Home',
           labelStyle: TextStyle(
             color: Colors.white,
-            fontSize: mediaQuery.size.height * 0.02,
+            fontSize: size.height * 0.02,
           ),
         ),
         CurvedNavigationBarItem(
           child: Icon(
             currentIndex == 1 ? Icons.search : Icons.search,
             color: Colors.white,
-            size: mediaQuery.size.height * 0.035 ,
+            size: size.height * 0.035 ,
           ),
           label: 'Buscar',
           labelStyle: TextStyle(
             color: Colors.white,
-            fontSize: mediaQuery.size.height * 0.02,
+            fontSize: size.height * 0.02,
           ),
         ),
         CurvedNavigationBarItem(
@@ -54,24 +54,24 @@ class NavBar extends StatelessWidget {
                 ? Icons.account_circle_rounded
                 : Icons.account_circle_outlined,
             color: Colors.white,
-            size: mediaQuery.size.height * 0.035 ,
+            size: size.height * 0.035 ,
           ),
           label: 'Perfil',
           labelStyle: TextStyle(
             color: Colors.white,
-            fontSize: mediaQuery.size.height * 0.02,
+            fontSize: size.height * 0.02,
           ),
         ),
         CurvedNavigationBarItem(
           child: Icon(
             currentIndex == 3 ? Icons.settings : Icons.settings,
             color: Colors.white,
-            size: mediaQuery.size.height * 0.035 ,
+            size: size.height * 0.035 ,
           ),
-          label: 'Configuración',
+          label: 'Config',
           labelStyle: TextStyle(
             color: Colors.white,
-            fontSize: mediaQuery.size.height * 0.02,
+            fontSize: size.height * 0.02,
           ),
         ),
       ],
