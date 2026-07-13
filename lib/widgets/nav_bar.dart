@@ -16,8 +16,8 @@ class NavBar extends StatelessWidget {
     return CurvedNavigationBar(
       index: currentIndex,
       height: size.height * 0.10,
-      backgroundColor: const Color(0xFF0C123F),
-      color: Colors.black38,
+      backgroundColor: Colors.transparent,
+      color: const Color.fromARGB(255, 8, 11, 39),
       buttonBackgroundColor: const Color(0xFFF7C53A),
       animationDuration: const Duration(milliseconds: 350),
       animationCurve: Curves.easeInOut,

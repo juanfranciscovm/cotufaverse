@@ -31,7 +31,9 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
           autoplay: true,
           autoplayDelay: 30000,
           pagination: const SwiperPagination(),
-          control: const SwiperControl(),
+          control: const SwiperControl(
+            color: Colors.white
+          ),
           itemCount: 10,
           itemBuilder: (context, index) {
             return Stack(
@@ -108,6 +110,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
+                          height: 1.8,
                           color: Colors.white,
                           fontSize: itemHeight * 0.03,
                         ),

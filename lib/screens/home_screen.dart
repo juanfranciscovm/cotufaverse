@@ -9,6 +9,16 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(
+        size: size,
+        searchButtonAction: () {
+
+        },
+        menuButtonAction: () {
+
+        },
+      ),
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -44,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const CardSwiper(),
-              SizedBox(height: size.height * 0.1),
+              SizedBox(height: size.height * 0.2),
             ],
           ),
         ),
@@ -52,3 +62,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
