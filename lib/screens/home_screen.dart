@@ -12,12 +12,8 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
         size: size,
-        searchButtonAction: () {
-
-        },
-        menuButtonAction: () {
-
-        },
+        searchButtonAction: () {},
+        menuButtonAction: () {},
       ),
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
@@ -28,32 +24,17 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const PreviewSwiper(),
-              Padding(
-                padding: EdgeInsets.all(size.width * 0.03),
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Top Películas',
-                    style: TextStyle(
-                      fontFamily: 'Agrandir',
-                      color: Colors.white,
-                      fontSize: size.height * 0.04,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: '.',
-                        style: TextStyle(
-                          fontFamily: 'Agrandir',
-                          color: const Color(0xFFF7C53A),
-                          fontSize: size.height * 0.04,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              TextWithDoubleColor(
+                size: size,
+                text1: 'Top Películas',
+                text2: '.',
               ),
               const CardSwiper(),
+              TextWithDoubleColor(
+                size: size,
+                text1: 'Películas Populares',
+                text2: '.',
+              ),
               SizedBox(height: size.height * 0.2),
             ],
           ),
@@ -62,4 +43,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

@@ -36,30 +36,19 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     bool showEmptyState = query.isEmpty && selectedGenreId == 0;
     final moviesProvider = Provider.of<MoviesProvider>(context);
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        toolbarHeight: size.height * 0.1,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: RichText(
-          text: const TextSpan(
-            text: "Buscar",
-            style: TextStyle(
-              color: Color.fromARGB(255, 248, 240, 204),
-              fontSize: 26,
-              fontFamily: "Agrandir",
-            ),
-            children: [
-              TextSpan(
-                text: ".",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 197, 39),
-                  fontSize: 28,
-                ),
-              ),
-            ],
-          ),
+        title: TextWithDoubleColor(
+          size: size,
+          text1: "Buscar",
+          text2: ".",
+          padding: const EdgeInsets.all(20.0),
         ),
       ),
       body: SingleChildScrollView(
