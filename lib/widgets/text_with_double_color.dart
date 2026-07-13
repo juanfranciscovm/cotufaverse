@@ -6,12 +6,14 @@ class TextWithDoubleColor extends StatelessWidget {
     required this.size,
     required this.text1,
     required this.text2,
-    this.padding = const EdgeInsets.symmetric(horizontal: 8),
+    this.padding = const EdgeInsets.all(16),
+    this.alignment = Alignment.centerLeft,
   });
   final EdgeInsetsGeometry padding;
   final Size size;
   final String text1;
   final String text2;
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class TextWithDoubleColor extends StatelessWidget {
       child: SizedBox(
         width: size.width,
         child: Align(
-          alignment: Alignment.centerLeft,
+          alignment: alignment,
           child: RichText(
             text: TextSpan(
               text: text1,

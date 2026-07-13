@@ -24,6 +24,12 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const PreviewSwiper(),
+              // Poner al configurar el usuario, si no borrar
+              // TextWithDoubleColor(
+              //   size: size,
+              //   text1: 'Películas ',
+              //   text2: 'Recomendadas',
+              // ),
               TextWithDoubleColor(
                 size: size,
                 text1: 'Top Películas',
@@ -34,7 +40,20 @@ class HomeScreen extends StatelessWidget {
                 size: size,
                 text1: 'Películas Populares',
                 text2: '.',
+                alignment: Alignment.centerRight,
               ),
+              TextWithDoubleColor(
+                size: size,
+                text1: 'Por ',
+                text2: 'Estrenar',
+              ),
+              TextWithDoubleColor(
+                size: size,
+                text1: 'Directorio de Películas',
+                text2: '.',
+                alignment: Alignment.center,
+              ),
+              
               SizedBox(height: size.height * 0.2),
             ],
           ),
