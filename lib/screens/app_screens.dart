@@ -1,2 +1,5 @@
 export 'package:cotufaverse/screens/home_screen.dart';
 export 'package:cotufaverse/screens/navigator_screen.dart';
+export 'package:cotufaverse/screens/settings_screen.dart';
+export 'package:cotufaverse/screens/profile_screen.dart';
+export 'package:cotufaverse/screens/search_screen.dart';

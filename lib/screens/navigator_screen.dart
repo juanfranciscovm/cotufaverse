@@ -13,14 +13,28 @@ class _NavigatorState extends State<NavigatorScreen> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
+    const SearchScreen(),
+    const ProfileScreen(),
+    const SettingsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: _screens),
+      extendBody: true,
+      backgroundColor: const Color.fromARGB(233, 12, 18, 63),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Color.fromARGB(233, 40, 56, 178),
+              Color.fromARGB(233, 12, 18, 63),
+            ],
+          ),
+        ),
+
+        child: IndexedStack(index: _currentIndex, children: _screens),
+      ),
 
       bottomNavigationBar: NavBar(
         currentIndex: _currentIndex,

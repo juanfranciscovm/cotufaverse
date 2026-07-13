@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0C123F),
+      backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
         child: SafeArea(
           top: false,
@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                       TextSpan(
                         text: '.',
                         style: TextStyle(
-                          fontFamily:'Agrandir',
+                          fontFamily: 'Agrandir',
                           color: const Color(0xFFF7C53A),
                           fontSize: size.height * 0.04,
                           fontWeight: FontWeight.bold,
