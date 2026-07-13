@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CategoryLabel extends StatelessWidget {
   const CategoryLabel({
@@ -20,7 +21,8 @@ class CategoryLabel extends StatelessWidget {
       ),
       child: Text(
         category,
-        style: TextStyle(color: Colors.white, fontSize: itemHeight * 0.04),
+        style: GoogleFonts.poppins(
+          color: Colors.white, fontSize: itemHeight * 0.02),
       ),
     );
   }

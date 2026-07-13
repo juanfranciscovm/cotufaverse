@@ -77,7 +77,7 @@ flutter:
   fonts:
     - family: Unineue
       fonts:
-        - asset: assets/fonts/Unineue.ttf
+        - asset: assets/fonts/unineue.ttf
     - family: Agrandir
       fonts:
         - asset: assets/fonts/agrandir.otf

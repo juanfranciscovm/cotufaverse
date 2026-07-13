@@ -1,6 +1,5 @@
 import 'package:cotufaverse/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,7 +23,8 @@ class HomeScreen extends StatelessWidget {
                 child: RichText(
                   text: TextSpan(
                     text: 'Top Peliculas',
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
+                      fontFamily: 'Agrandir',
                       color: Colors.white,
                       fontSize: size.height * 0.04,
                       fontWeight: FontWeight.bold,
@@ -32,7 +32,8 @@ class HomeScreen extends StatelessWidget {
                     children: <TextSpan>[
                       TextSpan(
                         text: '.',
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
+                          fontFamily:'Agrandir',
                           color: const Color(0xFFF7C53A),
                           fontSize: size.height * 0.04,
                           fontWeight: FontWeight.bold,
