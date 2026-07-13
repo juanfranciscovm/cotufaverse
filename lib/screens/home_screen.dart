@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.all(size.width * 0.03),
                 child: RichText(
                   text: TextSpan(
-                    text: 'Top Peliculas',
+                    text: 'Top Películas',
                     style: TextStyle(
                       fontFamily: 'Agrandir',
                       color: Colors.white,
