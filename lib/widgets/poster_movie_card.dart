@@ -7,11 +7,13 @@ class PosterMovieCard extends StatelessWidget {
     required this.itemHeight,
     required this.index,
     required this.itemWidth,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8.0)
   });
 
   final double itemHeight;
   final double itemWidth;
   final int index;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class PosterMovieCard extends StatelessWidget {
       height: itemHeight,
       width: itemWidth,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: padding,
         child: Stack(
           children: [
             ClipRRect(
@@ -66,15 +68,7 @@ class PosterMovieCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '10/10',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: itemHeight * 0.05,
-                          ),
-                        ),
                         Row(
                           children: [
                             Icon(

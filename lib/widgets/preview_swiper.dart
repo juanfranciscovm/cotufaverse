@@ -116,7 +116,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
 
                       const SizedBox(height: 10),
                       SizedBox(
-                        height: itemHeight * 0.08,
+                        height: itemHeight * 0.095,
                         child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: 10,
