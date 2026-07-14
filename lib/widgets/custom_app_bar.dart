@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  static const double _minAppBarHeight = 60;
   final Size size;
   final VoidCallback searchButtonAction;
   final VoidCallback menuButtonAction;
@@ -14,6 +15,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+
     return SafeArea(
       child: SizedBox(
         height: preferredSize.height,
@@ -24,13 +27,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: size.height * 0.07,
-                width: size.height * 0.07,
+                height: preferredSize.height * 0.8,
+                width: preferredSize.height * 0.8,
                 child: IconButton(
                   style: IconButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.black38,
-                    shape: const CircleBorder(),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
                   ),
                   icon: const Icon(Icons.menu),
                   onPressed: menuButtonAction,
@@ -40,13 +45,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: size.height * 0.07,
-                width: size.height * 0.07,
+                height: preferredSize.height * 0.8,
+                width: preferredSize.height * 0.8,
                 child: IconButton(
                   style: IconButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.black38,
-                    shape: const CircleBorder(),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
                   ),
                   icon: const Icon(Icons.search),
                   onPressed: searchButtonAction,
@@ -60,5 +67,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(size.height * 0.1);
+  Size get preferredSize => Size.fromHeight((size.height * 0.08).clamp(_minAppBarHeight, double.infinity));
 }
