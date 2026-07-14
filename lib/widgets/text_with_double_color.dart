@@ -6,7 +6,7 @@ class TextWithDoubleColor extends StatelessWidget {
     required this.size,
     required this.text1,
     required this.text2,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.all(30),
     this.alignment = Alignment.centerLeft,
   });
   final EdgeInsetsGeometry padding;

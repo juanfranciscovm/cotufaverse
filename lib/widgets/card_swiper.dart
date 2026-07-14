@@ -16,7 +16,7 @@ class _CardSwiperState extends State<CardSwiper> {
     final size = MediaQuery.of(context).size;
 
     final double maxItemWidth = size.width * 0.6;
-    final double maxItemHeight = size.height * 0.3;
+    final double maxItemHeight = size.height * 0.6;
     final double itemWidth = (maxItemHeight * _aspectRatio).clamp(
       0.0,
       maxItemWidth,

@@ -17,7 +17,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    final maxItemHeight = size.height * 0.6;
+    final maxItemHeight = size.height * 0.75;
     final itemWidth = size.width;
     final itemHeight = (itemWidth / _aspectRatio).clamp(0.0, maxItemHeight);
 
@@ -31,9 +31,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
           autoplay: true,
           autoplayDelay: 30000,
           pagination: const SwiperPagination(),
-          control: const SwiperControl(
-            color: Colors.white
-          ),
+          control: const SwiperControl(color: Colors.white),
           itemCount: 10,
           itemBuilder: (context, index) {
             return Stack(
@@ -109,6 +107,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                         'Consectetur reprehenderit cillum eiusmod culpa eiusmod aute cillum ullamco adipisicing duis do irure. Irure eu quis nulla labore in exercitation ipsum cillum esse sit. Eiusmod ut laboris et adipisicing excepteur non commodo aute. Cillum aliquip nisi in Lorem consequat veniam voluptate sunt sit ut sit. Velit voluptate Lorem do deserunt reprehenderit. Id aute ad duis magna irure nulla. Ex tempor do elit aute commodo occaecat labore non id nulla ut ipsum est qui.',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
                         style: GoogleFonts.poppins(
                           height: 1.8,
                           color: Colors.white,

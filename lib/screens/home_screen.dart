@@ -42,11 +42,13 @@ class HomeScreen extends StatelessWidget {
                 text2: '.',
                 alignment: Alignment.centerRight,
               ),
+              const CardSwiper(),
               TextWithDoubleColor(
                 size: size,
                 text1: 'Por ',
                 text2: 'Estrenar',
               ),
+              const DetailSwiper(),
               TextWithDoubleColor(
                 size: size,
                 text1: 'Directorio de Películas',
