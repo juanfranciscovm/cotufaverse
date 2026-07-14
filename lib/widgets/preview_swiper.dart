@@ -71,8 +71,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                         'El asesinato de Jesse James por el cobarde Robert Ford',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'Agrandir',
+                        style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: itemHeight * 0.045,
                           fontWeight: FontWeight.bold,
@@ -116,23 +115,22 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                       ),
 
                       const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          CategoryLabel(
-                            itemHeight: itemHeight,
-                            category: 'Acción',
-                          ),
-                          const SizedBox(width: 10),
-                          CategoryLabel(
-                            itemHeight: itemHeight,
-                            category: 'Aventura',
-                          ),
-                          const SizedBox(width: 10),
-                          CategoryLabel(
-                            itemHeight: itemHeight,
-                            category: 'Misterio',
-                          ),
-                        ],
+                      SizedBox(
+                        height: itemHeight * 0.08,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: CategoryLabel(
+                                itemHeight: itemHeight,
+                                category: 'Acción',
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),

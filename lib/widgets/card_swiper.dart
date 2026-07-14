@@ -31,17 +31,13 @@ class _CardSwiperState extends State<CardSwiper> {
         scrollDirection: Axis.horizontal,
         itemCount: 10,
         itemBuilder: (context, index) {
-          return SizedBox(
-            height: itemHeight,
-            width: itemWidth,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: PosterMovieCard(itemHeight: itemHeight, index: index),
-            ),
+          return PosterMovieCard(
+            itemHeight: itemHeight,
+            itemWidth: itemWidth,
+            index: index,
           );
         },
       ),
     );
   }
 }
-

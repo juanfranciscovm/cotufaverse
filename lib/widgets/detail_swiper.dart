@@ -53,7 +53,9 @@ class _DetailSwiperState extends State<DetailSwiper> {
                     width: imageWidth,
                     child: FadeInImage(
                       fit: BoxFit.cover,
-                      placeholder: const AssetImage('assets/images/loading.gif'),
+                      placeholder: const AssetImage(
+                        'assets/images/loading.gif',
+                      ),
                       image: NetworkImage(
                         'https://picsum.photos/450/800?random=$index',
                       ),
@@ -78,10 +80,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.black54,
-                                Colors.black,
-                              ],
+                              colors: [Colors.black54, Colors.black],
                             ),
                           ),
                         ),
@@ -94,8 +93,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
                                 'El asesinato de Jesse James por el cobarde Robert Ford',
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: 'Agrandir',
+                                style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontSize: cardHeight * 0.045,
                                   fontWeight: FontWeight.bold,
@@ -138,23 +136,22 @@ class _DetailSwiperState extends State<DetailSwiper> {
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  CategoryLabel(
-                                    itemHeight: cardHeight,
-                                    category: 'Acción',
-                                  ),
-                                  const SizedBox(width: 10),
-                                  CategoryLabel(
-                                    itemHeight: cardHeight,
-                                    category: 'Aventura',
-                                  ),
-                                  const SizedBox(width: 10),
-                                  CategoryLabel(
-                                    itemHeight: cardHeight,
-                                    category: 'Misterio',
-                                  ),
-                                ],
+                              SizedBox(
+                                height: cardHeight * 0.125,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: 10,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: CategoryLabel(
+                                        itemHeight: cardHeight,
+                                        category: 'Acción',
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             ],
                           ),

@@ -43,11 +43,7 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.centerRight,
               ),
               const CardSwiper(),
-              TextWithDoubleColor(
-                size: size,
-                text1: 'Por ',
-                text2: 'Estrenar',
-              ),
+              TextWithDoubleColor(size: size, text1: 'Por ', text2: 'Estrenar'),
               const DetailSwiper(),
               TextWithDoubleColor(
                 size: size,
@@ -55,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                 text2: '.',
                 alignment: Alignment.center,
               ),
-              
+              //CardGrip(),
               SizedBox(height: size.height * 0.2),
             ],
           ),
