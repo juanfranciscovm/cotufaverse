@@ -15,21 +15,22 @@ class _CardGripState extends State<CardGrip> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    final double maxItemWidth = size.width * 0.35;
-    
+    final double maxItemHeight = size.height * 0.5;
+
+    final double maxItemWidth = _aspectRatio * maxItemHeight;
+
     return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
         maxCrossAxisExtent: maxItemWidth,
-        childAspectRatio: _aspectRatio
+        childAspectRatio: _aspectRatio,
       ),
       itemCount: 20,
       itemBuilder: (BuildContext context, int index) {
-
         return LayoutBuilder(
           builder: (contex, constrains) {
             return PosterMovieCard(
@@ -38,10 +39,9 @@ class _CardGripState extends State<CardGrip> {
               itemWidth: constrains.maxWidth,
               padding: const EdgeInsets.all(0),
             );
-          }
+          },
         );
       },
     );
-
   }
 }
