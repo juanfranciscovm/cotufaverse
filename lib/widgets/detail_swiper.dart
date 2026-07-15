@@ -37,7 +37,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
         itemCount: 10,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsetsGeometry.all(8),
+            padding: const EdgeInsets.all(8),
             child: Container(
               clipBehavior: Clip.antiAlias,
               height: cardHeight,

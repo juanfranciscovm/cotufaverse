@@ -1,3 +1,4 @@
+export 'package:cotufaverse/widgets/order_by_dropdown_menu.dart';
 export 'package:cotufaverse/widgets/card_grip.dart';
 export 'package:cotufaverse/widgets/preview_swiper.dart';
 export "package:cotufaverse/widgets/nav_bar.dart";
@@ -9,4 +10,3 @@ export "package:cotufaverse/widgets/filter_tag.dart";
 export "package:cotufaverse/widgets/text_with_double_color.dart";
 export 'package:cotufaverse/widgets/detail_swiper.dart';
 export 'package:cotufaverse/widgets/category_label.dart';
-

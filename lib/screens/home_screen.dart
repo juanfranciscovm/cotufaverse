@@ -51,6 +51,7 @@ class HomeScreen extends StatelessWidget {
                 text2: '.',
                 alignment: Alignment.center,
               ),
+              OrderByDropdownMenu(),
               const CardGrip(),
               SizedBox(height: size.height * 0.2),
             ],

@@ -20,7 +20,7 @@ class _CardGripState extends State<CardGrip> {
     final double maxItemWidth = _aspectRatio * maxItemHeight;
 
     return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(20),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

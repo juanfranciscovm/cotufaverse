@@ -26,6 +26,7 @@ class _NavigatorState extends State<NavigatorScreen> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color.fromARGB(233, 40, 56, 178),
               Color.fromARGB(233, 12, 18, 63),
