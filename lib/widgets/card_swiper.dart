@@ -16,7 +16,7 @@ class _CardSwiperState extends State<CardSwiper> {
     final size = MediaQuery.of(context).size;
 
     final double maxItemWidth = size.width * 0.6;
-    final double maxItemHeight = size.height * 0.3;
+    final double maxItemHeight = size.height * 0.6;
     final double itemWidth = (maxItemHeight * _aspectRatio).clamp(
       0.0,
       maxItemWidth,
@@ -31,17 +31,13 @@ class _CardSwiperState extends State<CardSwiper> {
         scrollDirection: Axis.horizontal,
         itemCount: 10,
         itemBuilder: (context, index) {
-          return SizedBox(
-            height: itemHeight,
-            width: itemWidth,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: PosterMovieCard(itemHeight: itemHeight, index: index),
-            ),
+          return PosterMovieCard(
+            itemHeight: itemHeight,
+            itemWidth: itemWidth,
+            index: index,
           );
         },
       ),
     );
   }
 }
-

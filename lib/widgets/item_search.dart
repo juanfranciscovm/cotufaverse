@@ -30,12 +30,26 @@ class ItemSearch extends StatelessWidget {
           ),
         ),
       ),
-      title: Text(
-        movie.title,
-        style: const TextStyle(
-          color: Color.fromARGB(255, 248, 240, 204),
-          fontWeight: FontWeight.bold,
-        ),
+      title: Row(
+        children: [
+          Text(
+            movie.title,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 248, 240, 204),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          movie.adult
+              ? const Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Icon(
+                    Icons.eighteen_up_rating,
+                    color: Color.fromARGB(255, 255, 197, 39),
+                    size: 16,
+                  ),
+                )
+              : const SizedBox.shrink(),
+        ],
       ),
       subtitle: Text(
         movie.originalTitle,

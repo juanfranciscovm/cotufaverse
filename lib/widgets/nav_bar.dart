@@ -11,13 +11,17 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double minNavBarHeight = 60;
     final size = MediaQuery.of(context).size;
+    final double navBarHeight = (size.height * 0.10).clamp(minNavBarHeight, double.infinity);
+    final double iconSize = navBarHeight * 0.35;
+    final double textSize = navBarHeight * 0.2;
 
     return CurvedNavigationBar(
       index: currentIndex,
-      height: size.height * 0.10,
-      backgroundColor: const Color(0xFF0C123F),
-      color: Colors.black38,
+      height: navBarHeight,
+      backgroundColor: Colors.transparent,
+      color: const Color.fromARGB(255, 8, 11, 39),
       buttonBackgroundColor: const Color(0xFFF7C53A),
       animationDuration: const Duration(milliseconds: 350),
       animationCurve: Curves.easeInOut,
@@ -29,24 +33,24 @@ class NavBar extends StatelessWidget {
                 ? Icons.local_movies_rounded
                 : Icons.local_movies_outlined,
             color: Colors.white,
-            size: size.height * 0.035,
+            size: iconSize,
           ),
           label: 'Home',
           labelStyle: GoogleFonts.poppins(
             color: Colors.white,
-            fontSize: size.height * 0.02,
+            fontSize: textSize,
           ),
         ),
         CurvedNavigationBarItem(
           child: Icon(
             currentIndex == 1 ? Icons.search : Icons.search,
             color: Colors.white,
-            size: size.height * 0.035 ,
+            size: iconSize,
           ),
           label: 'Buscar',
-          labelStyle: GoogleFonts.poppins( 
+          labelStyle: GoogleFonts.poppins(
             color: Colors.white,
-            fontSize: size.height * 0.02,
+            fontSize: textSize,
           ),
         ),
         CurvedNavigationBarItem(
@@ -55,24 +59,24 @@ class NavBar extends StatelessWidget {
                 ? Icons.account_circle_rounded
                 : Icons.account_circle_outlined,
             color: Colors.white,
-            size: size.height * 0.035 ,
+            size: iconSize,
           ),
           label: 'Perfil',
           labelStyle: GoogleFonts.poppins(
             color: Colors.white,
-            fontSize: size.height * 0.02,
+            fontSize: textSize,
           ),
         ),
         CurvedNavigationBarItem(
           child: Icon(
             currentIndex == 3 ? Icons.settings : Icons.settings,
             color: Colors.white,
-            size: size.height * 0.035 ,
+            size: iconSize,
           ),
           label: 'Config',
-          labelStyle: GoogleFonts.poppins(  
+          labelStyle: GoogleFonts.poppins(
             color: Colors.white,
-            fontSize: size.height * 0.02,
+            fontSize: textSize,
           ),
         ),
       ],

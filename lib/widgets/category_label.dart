@@ -14,6 +14,7 @@ class CategoryLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white, width: 2),
@@ -22,7 +23,7 @@ class CategoryLabel extends StatelessWidget {
       child: Text(
         category,
         style: GoogleFonts.poppins(
-          color: Colors.white, fontSize: itemHeight * 0.02),
+          color: Colors.white, fontSize: itemHeight * 0.025),
       ),
     );
   }
