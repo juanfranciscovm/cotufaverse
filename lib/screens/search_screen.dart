@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import "package:cotufaverse/models/models.dart";
 import "package:cotufaverse/provider/movies_provider.dart";
 import "package:cotufaverse/widgets/widgets.dart";
+import 'package:google_fonts/google_fonts.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -23,7 +24,7 @@ class _SearchScreenState extends State<SearchScreen> {
       movies = await moviesProvider.searchMovies(query);
       if (selectedGenreId != 0) {
         movies = movies
-            .where((m) => m.genreIds.contains(selectedGenreId))
+            .where((movie) => movie.genreIds.contains(selectedGenreId))
             .toList();
       }
     } else if (selectedGenreId != 0) {
@@ -34,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool showEmptyState = query.isEmpty && selectedGenreId == 0;
+    bool emptyState = query.isEmpty && selectedGenreId == 0;
     final moviesProvider = Provider.of<MoviesProvider>(context);
     final Size size = MediaQuery.of(context).size;
 
@@ -118,14 +119,27 @@ class _SearchScreenState extends State<SearchScreen> {
               const SizedBox(height: 20),
 
               //resultados
-              if (showEmptyState)
-                const Padding(
+              if (emptyState)
+                Padding(
                   padding: EdgeInsets.only(top: 100),
                   child: Center(
-                    child: Icon(
-                      Icons.movie_creation_outlined,
-                      color: Color.fromARGB(255, 255, 197, 39),
-                      size: 100,
+                    child: Column(
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/empty_cotufa.png"),
+                          height: 100,
+                          width: 100,
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "Por acá no hay cotufas...",
+                          style: GoogleFonts.poppins(
+                            color: Color.fromARGB(255, 248, 240, 204),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -145,14 +159,28 @@ class _SearchScreenState extends State<SearchScreen> {
                     }
 
                     if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return const Padding(
+                      return Padding(
                         padding: EdgeInsets.only(top: 50),
                         child: Center(
-                          child: Text(
-                            "No se encontraron resultados.",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 248, 240, 204),
-                            ),
+                          child: Column(
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                  "assets/images/empty_cotufa.png",
+                                ),
+                                height: 100,
+                                width: 100,
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                "No se encontraron resultados.",
+                                style: GoogleFonts.poppins(
+                                  color: Color.fromARGB(255, 248, 240, 204),
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       );
