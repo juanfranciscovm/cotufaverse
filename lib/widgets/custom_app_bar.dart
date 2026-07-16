@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
               color: Colors.black26),
-              width: size.width *0.4,
+              width: (size.width *0.4).clamp(0, 200),
               child: Image.asset('assets/images/logoCotufaVerse.png')),
             ButtonAppbar(
               preferredSize: preferredSize,
