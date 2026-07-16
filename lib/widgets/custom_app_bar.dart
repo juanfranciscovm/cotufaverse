@@ -15,8 +15,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return SafeArea(
       child: SizedBox(
         height: preferredSize.height,
@@ -24,41 +22,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: preferredSize.height * 0.8,
-                width: preferredSize.height * 0.8,
-                child: IconButton(
-                  style: IconButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.black38,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))
-                    ),
-                  ),
-                  icon: const Icon(Icons.menu),
-                  onPressed: menuButtonAction,
-                ),
-              ),
+            ButtonAppbar(
+              preferredSize: preferredSize,
+              onPress: menuButtonAction,
+              icon: Icons.menu,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: preferredSize.height * 0.8,
-                width: preferredSize.height * 0.8,
-                child: IconButton(
-                  style: IconButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.black38,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))
-                    ),
-                  ),
-                  icon: const Icon(Icons.search),
-                  onPressed: searchButtonAction,
-                ),
-              ),
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
+              color: Colors.black26),
+              width: size.width *0.4,
+              child: Image.asset('assets/images/logoCotufaVerse.png')),
+            ButtonAppbar(
+              preferredSize: preferredSize,
+              onPress: searchButtonAction,
+              icon: Icons.search,
             ),
           ],
         ),
@@ -67,5 +45,42 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight((size.height * 0.08).clamp(_minAppBarHeight, double.infinity));
+  Size get preferredSize => Size.fromHeight(
+    (size.height * 0.08).clamp(_minAppBarHeight, double.infinity),
+  );
+}
+
+class ButtonAppbar extends StatelessWidget {
+  const ButtonAppbar({
+    super.key,
+    required this.preferredSize,
+    required this.onPress,
+    required this.icon,
+  });
+
+  final Size preferredSize;
+  final VoidCallback onPress;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        height: preferredSize.height * 0.8,
+        width: preferredSize.height * 0.8,
+        child: IconButton(
+          style: IconButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.black38,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+          ),
+          icon: Icon(icon),
+          onPressed: onPress,
+        ),
+      ),
+    );
+  }
 }
