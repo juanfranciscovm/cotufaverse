@@ -21,11 +21,17 @@ class NavBar extends StatelessWidget {
     final double iconSize = navBarHeight * 0.35;
     final double textSize = navBarHeight * 0.2;
 
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color barColor = isDark
+        ? const Color(0xFF080B27)
+        : const Color(0xFF080B27);
+    final Color itemColor = isDark ? Colors.white : Colors.white;
+
     return CurvedNavigationBar(
       index: currentIndex,
       height: navBarHeight,
       backgroundColor: Colors.transparent,
-      color: const Color.fromARGB(255, 8, 11, 39),
+      color: barColor,
       buttonBackgroundColor: const Color(0xFFF7C53A),
       animationDuration: const Duration(milliseconds: 350),
       animationCurve: Curves.easeInOut,
@@ -36,7 +42,7 @@ class NavBar extends StatelessWidget {
             currentIndex == 0
                 ? Icons.local_movies_rounded
                 : Icons.local_movies_outlined,
-            color: Colors.white,
+            color: itemColor,
             size: iconSize,
           ),
           label: AppDictionary.translate(context, "home"),

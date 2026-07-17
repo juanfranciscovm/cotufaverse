@@ -17,6 +17,8 @@ class TextWithDoubleColor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color mainTextColor = isDark ? Colors.white : const Color(0xFF0C123F);
     return Padding(
       padding: padding,
       child: SizedBox(
@@ -28,7 +30,7 @@ class TextWithDoubleColor extends StatelessWidget {
               text: text1,
               style: TextStyle(
                 fontFamily: 'Agrandir',
-                color: Colors.white,
+                color: mainTextColor,
                 fontSize: size.height * 0.04,
                 fontWeight: FontWeight.bold,
               ),

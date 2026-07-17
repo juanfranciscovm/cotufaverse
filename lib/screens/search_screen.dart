@@ -36,6 +36,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Color dynamicTextColor =
+        Theme.of(context).brightness == Brightness.dark
+        ? const Color(0xFFF8F0CC)
+        : const Color(0xFF0C123F);
     bool emptyState = query.isEmpty && selectedGenreId == 0;
     final moviesProvider = Provider.of<MoviesProvider>(context);
     final Size size = MediaQuery.of(context).size;
@@ -135,7 +139,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         Text(
                           AppDictionary.translate(context, "no_popcorn"),
                           style: GoogleFonts.poppins(
-                            color: Color.fromARGB(255, 248, 240, 204),
+                            color: dynamicTextColor,
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
@@ -176,7 +180,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               Text(
                                 AppDictionary.translate(context, "no_results"),
                                 style: GoogleFonts.poppins(
-                                  color: Color.fromARGB(255, 248, 240, 204),
+                                  color: dynamicTextColor,
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -194,8 +198,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       children: [
                         Text(
                           "${AppDictionary.translate(context, "search_results")} (${movies.length})",
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 248, 240, 204),
+                          style: TextStyle(
+                            color: dynamicTextColor,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),

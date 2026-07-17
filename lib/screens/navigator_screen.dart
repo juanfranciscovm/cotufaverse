@@ -35,7 +35,7 @@ class _NavigatorState extends State<NavigatorScreen> {
                   ],
                 )
               : null,
-          color: isDarkMode ? null : AppTheme.textCream,
+          color: isDarkMode ? null : Colors.white,
         ),
 
         child: IndexedStack(index: _currentIndex, children: _screens),

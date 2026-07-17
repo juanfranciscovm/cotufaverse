@@ -9,6 +9,13 @@ class ItemSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     movie.heroId = "item-${movie.id}";
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color titleColor = isDark
+        ? const Color(0xFFF8F0CC)
+        : const Color(0xFF0C123F);
+    final Color subtitleColor = isDark
+        ? Colors.white54
+        : const Color.fromARGB(165, 12, 18, 63);
 
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -35,10 +42,7 @@ class ItemSearch extends StatelessWidget {
           Expanded(
             child: Text(
               movie.title,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 248, 240, 204),
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(color: titleColor, fontWeight: FontWeight.bold),
             ),
           ),
           movie.adult
@@ -55,7 +59,7 @@ class ItemSearch extends StatelessWidget {
       ),
       subtitle: Text(
         movie.originalTitle,
-        style: const TextStyle(color: Colors.white54),
+        style: TextStyle(color: subtitleColor),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
