@@ -25,6 +25,8 @@ class HomeScreen extends StatelessWidget {
         child: SafeArea(
           top: false,
           bottom: false,
+          right: false,
+          left: false,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
