@@ -127,7 +127,7 @@ class MoviesProvider extends ChangeNotifier {
     final genreResponse = GenreResponse.fromJson(response.body);
     movieGenres = genreResponse.genres;
     final String allText = _language == "en-US" ? "ALL" : "TODOS";
-    movieGenres.insert(0, Genre(id: 0, name: "TODOS"));
+    movieGenres.insert(0, Genre(id: 0, name: allText));
     notifyListeners();
   }
 
