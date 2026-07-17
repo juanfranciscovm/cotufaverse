@@ -16,6 +16,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      right: false,
+      left: false,
       child: SizedBox(
         height: preferredSize.height,
         width: preferredSize.width,
