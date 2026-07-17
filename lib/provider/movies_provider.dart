@@ -1,4 +1,3 @@
-import "package:cotufaverse/models/search.dart";
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import "package:cotufaverse/models/models.dart";
