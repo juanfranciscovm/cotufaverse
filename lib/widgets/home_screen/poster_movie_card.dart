@@ -1,3 +1,4 @@
+import 'package:cotufaverse/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,9 +8,11 @@ class PosterMovieCard extends StatelessWidget {
     required this.itemHeight,
     required this.index,
     required this.itemWidth,
-    this.padding = const EdgeInsets.symmetric(horizontal: 8.0)
+    this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
+    required this.movie,
   });
 
+  final Movie movie;
   final double itemHeight;
   final double itemWidth;
   final int index;
@@ -17,6 +20,14 @@ class PosterMovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int score = movie.voteAverage.round();
+
+    Color starEnable1 = (score == 0) ? Colors.transparent : const Color(0xFFF7C53A);
+    Color starEnable2 = (score <= 2) ? Colors.transparent : const Color(0xFFF7C53A);
+    Color starEnable3 = (score <= 4) ? Colors.transparent : const Color(0xFFF7C53A);
+    Color starEnable4 = (score <= 6) ? Colors.transparent : const Color(0xFFF7C53A);
+    Color starEnable5 = (score <= 8) ? Colors.transparent : const Color(0xFFF7C53A);
+
     return SizedBox(
       height: itemHeight,
       width: itemWidth,
@@ -30,9 +41,7 @@ class PosterMovieCard extends StatelessWidget {
                 child: FadeInImage(
                   fit: BoxFit.cover,
                   placeholder: const AssetImage('assets/images/loading.gif'),
-                  image: NetworkImage(
-                    'https://picsum.photos/200/300?random=$index',
-                  ),
+                  image: NetworkImage(movie.fullPosterPath),
                 ),
               ),
             ),
@@ -45,8 +54,6 @@ class PosterMovieCard extends StatelessWidget {
                   colors: [
                     Colors.transparent,
                     Colors.black.withValues(alpha: 0.5),
-                    Colors.black.withValues(alpha: 0.7),
-                    Colors.black,
                   ],
                 ),
               ),
@@ -57,7 +64,7 @@ class PosterMovieCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'El asesinato de Jesse James por el cobarde Robert Ford',
+                      movie.title,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.poppins(
@@ -72,28 +79,28 @@ class PosterMovieCard extends StatelessWidget {
                         Row(
                           children: [
                             Icon(
-                              Icons.star,
-                              color: const Color(0xFFF7C53A),
+                              score >= 2 ? Icons.star : Icons.star_half,
+                              color: starEnable1,
                               size: itemHeight * 0.05,
                             ),
                             Icon(
-                              Icons.star,
-                              color: const Color(0xFFF7C53A),
+                              score >=  4? Icons.star : Icons.star_half,
+                              color: starEnable2,
                               size: itemHeight * 0.05,
                             ),
                             Icon(
-                              Icons.star,
-                              color: const Color(0xFFF7C53A),
+                              score >=  6? Icons.star : Icons.star_half,
+                              color: starEnable3,
                               size: itemHeight * 0.05,
                             ),
                             Icon(
-                              Icons.star,
-                              color: const Color(0xFFF7C53A),
+                              score >=  8? Icons.star : Icons.star_half,
+                              color: starEnable4,
                               size: itemHeight * 0.05,
                             ),
                             Icon(
-                              Icons.star,
-                              color: const Color(0xFFF7C53A),
+                              score >=  10? Icons.star : Icons.star_half,
+                              color: starEnable5,
                               size: itemHeight * 0.05,
                             ),
                           ],
@@ -107,11 +114,11 @@ class PosterMovieCard extends StatelessWidget {
             Positioned(
               top: 10,
               right: 10,
-              child: Icon(
+              child: movie.adult ? Icon(
                 Icons.eighteen_up_rating_outlined,
                 color: Colors.white,
                 size: itemHeight * 0.125,
-              ),
+              ) : const SizedBox(),
             ),
           ],
         ),

@@ -1,17 +1,17 @@
+import 'package:cotufaverse/models/genre.dart';
+import 'package:cotufaverse/models/movie.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DetailSwiper extends StatefulWidget {
-  const DetailSwiper({super.key});
+class DetailSwiper extends StatelessWidget {
+  const DetailSwiper({super.key, required this.movies, required this.genres});
 
-  @override
-  State<DetailSwiper> createState() => _DetailSwiperState();
-}
+  final List<Movie> movies;
+  final List<Genre> genres;
 
-class _DetailSwiperState extends State<DetailSwiper> {
-  static const double _aspectRatioCard = 3 / 2;
-  static const double _aspectRatioImage = 2 / 3;
+  final double _aspectRatioCard = 3 / 2;
+  final double _aspectRatioImage = 2 / 3;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
 
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: movies.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8),
@@ -56,9 +56,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
                       placeholder: const AssetImage(
                         'assets/images/loading.gif',
                       ),
-                      image: NetworkImage(
-                        'https://picsum.photos/450/800?random=$index',
-                      ),
+                      image: NetworkImage(movies[index].fullPosterPath),
                     ),
                   ),
                   Expanded(
@@ -70,9 +68,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
                             placeholder: const AssetImage(
                               'assets/images/loading.gif',
                             ),
-                            image: NetworkImage(
-                              'https://picsum.photos/800/450?random=$index',
-                            ),
+                            image: NetworkImage(movies[index].fullBackdropPath),
                           ),
                         ),
                         Container(
@@ -90,7 +86,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'El asesinato de Jesse James por el cobarde Robert Ford',
+                                movies[index].title,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.poppins(
@@ -103,7 +99,7 @@ class _DetailSwiperState extends State<DetailSwiper> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '10/10',
+                                    '${movies[index].voteAverage.toStringAsFixed(2)}/10',
                                     style: GoogleFonts.poppins(
                                       color: Colors.white,
                                       fontSize: cardHeight * 0.03,
@@ -116,16 +112,20 @@ class _DetailSwiperState extends State<DetailSwiper> {
                                     size: cardHeight * 0.07,
                                   ),
                                   const SizedBox(width: 5),
-                                  Icon(
-                                    Icons.eighteen_up_rating_outlined,
-                                    color: Colors.white,
-                                    size: cardHeight * 0.07,
-                                  ),
+                                  movies[index].adult
+                                      ? Icon(
+                                          Icons.eighteen_up_rating_outlined,
+                                          color: Colors.white,
+                                          size: cardHeight * 0.07,
+                                        )
+                                      : const SizedBox(),
                                 ],
                               ),
                               const SizedBox(),
                               Text(
-                                'Consectetur reprehenderit cillum eiusmod culpa eiusmod aute cillum ullamco adipisicing duis do irure. Irure eu quis nulla labore in exercitation ipsum cillum esse sit. Eiusmod ut laboris et adipisicing excepteur non commodo aute. Cillum aliquip nisi in Lorem consequat veniam voluptate sunt sit ut sit. Velit voluptate Lorem do deserunt reprehenderit. Id aute ad duis magna irure nulla. Ex tempor do elit aute commodo occaecat labore non id nulla ut ipsum est qui.',
+                                movies[index].overview.isNotEmpty
+                                    ? movies[index].overview
+                                    : 'No se encontro una descripción',
                                 maxLines: 5,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.justify,
@@ -139,15 +139,23 @@ class _DetailSwiperState extends State<DetailSwiper> {
                               SizedBox(
                                 height: cardHeight * 0.125,
                                 child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: 10,
+                                  itemCount: movies[index].genreIds.length,
                                   scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
+                                  itemBuilder: (context, genreIndex) {
+                                    final genreId =
+                                        movies[index].genreIds[genreIndex];
+
+                                    final genre = genres.firstWhere(
+                                      (g) => g.id == genreId,
+                                      orElse: () =>
+                                          Genre(id: 0, name: 'Sin Genero'),
+                                    );
+
                                     return Padding(
                                       padding: const EdgeInsets.only(right: 10),
                                       child: CategoryLabel(
                                         itemHeight: cardHeight,
-                                        category: 'Acción',
+                                        category: genre.name,
                                       ),
                                     );
                                   },

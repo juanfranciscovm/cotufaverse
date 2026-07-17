@@ -1,15 +1,13 @@
+import 'package:cotufaverse/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
 
-class CardSwiper extends StatefulWidget {
-  const CardSwiper({super.key});
+class CardSwiper extends StatelessWidget {
+  const CardSwiper({super.key, required this.movies});
 
-  @override
-  State<CardSwiper> createState() => _CardSwiperState();
-}
+  final List<Movie> movies;
 
-class _CardSwiperState extends State<CardSwiper> {
-  static const double _aspectRatio = 2 / 3;
+  final double _aspectRatio = 2 / 3;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +27,10 @@ class _CardSwiperState extends State<CardSwiper> {
 
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: movies.length,
         itemBuilder: (context, index) {
           return PosterMovieCard(
+            movie: movies[index],
             itemHeight: itemHeight,
             itemWidth: itemWidth,
             index: index,

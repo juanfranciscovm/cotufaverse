@@ -11,15 +11,20 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Movie> playingMovies = [];
   List<Movie> popularMovies = [];
+  List<Movie> topRatedMovies = [];
+  List<Movie> upcomingMovies = [];
   List<Genre> movieGenres = [];
 
   Map<int, List<Cast>> movieCast = {};
 
   int _popularPage = 0;
+  int _topRatedPage = 0;
+  int _upcomingPage = 0;
+
   MoviesProvider() {
     _loadInitialSettings();
   }
-  _loadInitialSettings() async {
+  void _loadInitialSettings() async {
     final prefs = await SharedPreferences.getInstance();
     final isEnglish = prefs.getBool("isEnglish") ?? false;
 
@@ -29,21 +34,27 @@ class MoviesProvider extends ChangeNotifier {
     getPlayingMovies();
     getPopularMovies();
     getMovieGenres();
+    getTopRatedMovies();
+    getUpcomingMovies();
   }
 
   //limpiar los datos
   void _resetAndFetch() {
     playingMovies.clear();
     popularMovies.clear();
+    topRatedMovies.clear();
+    upcomingMovies.clear();
     movieGenres.clear();
     movieCast.clear();
     _popularPage = 0;
 
-    notifyListeners();
-
     getPlayingMovies();
     getPopularMovies();
     getMovieGenres();
+    getTopRatedMovies();
+    getUpcomingMovies();
+
+    notifyListeners();
   }
 
   void updateLanguage(bool isEnglish) {
@@ -68,18 +79,34 @@ class MoviesProvider extends ChangeNotifier {
     return response.body;
   }
 
-  getPlayingMovies() async {
+  void getPlayingMovies() async {
     final jsonData = await _getJsonData("/3/movie/now_playing");
     final playingData = Playing.fromJson(jsonData);
     playingMovies = playingData.movie;
     notifyListeners();
   }
 
-  getPopularMovies() async {
+  void getPopularMovies() async {
     _popularPage++;
     final jsonData = await _getJsonData("/3/movie/popular", _popularPage);
     final popularData = Popular.fromJson(jsonData);
     popularMovies = [...popularMovies, ...popularData.movie];
+    notifyListeners();
+  }
+
+  void getTopRatedMovies() async {
+    _topRatedPage++;
+    final jsonData = await _getJsonData("/3/movie/top_rated", _topRatedPage);
+    final topRatedData = TopRated.fromJson(jsonData);
+    topRatedMovies = [...topRatedMovies, ...topRatedData.movie];
+    notifyListeners();
+  }
+
+  void getUpcomingMovies() async {
+    _upcomingPage++;
+    final jsonData = await _getJsonData('3/movie/upcoming', _upcomingPage);
+    final upcomingData = Upcoming.fromJson(jsonData);
+    upcomingMovies = [...upcomingMovies, ...upcomingData.movie];
     notifyListeners();
   }
 
@@ -91,7 +118,7 @@ class MoviesProvider extends ChangeNotifier {
     return creditsData.cast;
   }
 
-  getMovieGenres() async {
+  void getMovieGenres() async {
     final url = Uri.https(_baseUrl, "3/genre/movie/list", {
       "api_key": _apiKey,
       "language": _language,
