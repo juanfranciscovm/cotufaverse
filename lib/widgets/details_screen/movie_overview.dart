@@ -9,16 +9,17 @@ class MovieOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color textColor = isDark
+        ? const Color(0xFFF8F0CC)
+        : const Color(0xFF0C123F);
+
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Text(
         movie.overview,
         textAlign: TextAlign.justify,
-        style: GoogleFonts.poppins(
-          color: Color.fromARGB(255, 248, 240, 204),
-          fontSize: 15,
-          height: 1.3,
-        ),
+        style: GoogleFonts.poppins(color: textColor, fontSize: 15, height: 1.3),
       ),
     );
   }
