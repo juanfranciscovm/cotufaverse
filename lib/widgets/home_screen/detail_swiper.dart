@@ -68,7 +68,7 @@ class DetailSwiper extends StatelessWidget {
                             placeholder: const AssetImage(
                               'assets/images/loading.gif',
                             ),
-                            image: NetworkImage(movies[index].backdropPath!),
+                            image: NetworkImage(movies[index].fullBackdropPath),
                           ),
                         ),
                         Container(
@@ -139,7 +139,6 @@ class DetailSwiper extends StatelessWidget {
                               SizedBox(
                                 height: cardHeight * 0.125,
                                 child: ListView.builder(
-                                  shrinkWrap: true,
                                   itemCount: movies[index].genreIds.length,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, genreIndex) {

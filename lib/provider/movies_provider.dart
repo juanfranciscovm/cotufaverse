@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import "package:cotufaverse/models/models.dart";
@@ -43,15 +42,19 @@ class MoviesProvider extends ChangeNotifier {
   void _resetAndFetch() {
     playingMovies.clear();
     popularMovies.clear();
+    topRatedMovies.clear();
+    upcomingMovies.clear();
     movieGenres.clear();
     movieCast.clear();
     _popularPage = 0;
 
-    notifyListeners();
-
     getPlayingMovies();
     getPopularMovies();
     getMovieGenres();
+    getTopRatedMovies();
+    getUpcomingMovies();
+
+    notifyListeners();
   }
 
   void updateLanguage(bool isEnglish) {
