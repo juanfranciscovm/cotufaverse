@@ -1,14 +1,12 @@
+import 'package:cotufaverse/models/models.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class CardGrip extends StatefulWidget {
-  const CardGrip({super.key});
+class CardGrip extends StatelessWidget {
+  const CardGrip({super.key, required this.movies});
 
-  @override
-  State<CardGrip> createState() => _CardGripState();
-}
+  final List<Movie> movies;
 
-class _CardGripState extends State<CardGrip> {
   static const double _aspectRatio = 2 / 3;
 
   @override
@@ -29,11 +27,12 @@ class _CardGripState extends State<CardGrip> {
         maxCrossAxisExtent: maxItemWidth,
         childAspectRatio: _aspectRatio,
       ),
-      itemCount: 20,
+      itemCount: movies.length,
       itemBuilder: (BuildContext context, int index) {
         return LayoutBuilder(
           builder: (contex, constrains) {
             return PosterMovieCard(
+              movie: movies[index],
               itemHeight: constrains.maxHeight,
               index: index,
               itemWidth: constrains.maxWidth,

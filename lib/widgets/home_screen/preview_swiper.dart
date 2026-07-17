@@ -1,16 +1,15 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:cotufaverse/widgets/home_screen/category_label.dart';
+import 'package:cotufaverse/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PreviewSwiper extends StatefulWidget {
-  const PreviewSwiper({super.key});
+class PreviewSwiper extends StatelessWidget {
+  const PreviewSwiper({super.key, required this.movies, required this.genres});
 
-  @override
-  State<PreviewSwiper> createState() => _PreviewSwiperState();
-}
+  final List<Movie> movies;
+  final List<Genre> genres;
 
-class _PreviewSwiperState extends State<PreviewSwiper> {
   static const double _aspectRatio = 4 / 9;
 
   @override
@@ -32,7 +31,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
           autoplayDelay: 30000,
           pagination: const SwiperPagination(),
           control: const SwiperControl(color: Colors.white),
-          itemCount: 10,
+          itemCount: movies.length,
           itemBuilder: (context, index) {
             return Stack(
               children: [
@@ -41,7 +40,9 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                     fit: BoxFit.cover,
                     placeholder: const AssetImage('assets/images/loading.gif'),
                     image: NetworkImage(
-                      'https://picsum.photos/800/450?random=$index',
+                      size.height > size.width
+                          ? movies[index].fullPosterPath
+                          : movies[index].fullBackdropPath,
                     ),
                   ),
                 ),
@@ -53,7 +54,6 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                       colors: [
                         Colors.transparent,
                         Colors.black.withValues(alpha: 0.5),
-                        Colors.black.withValues(alpha: 0.7),
                       ],
                     ),
                   ),
@@ -68,7 +68,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'El asesinato de Jesse James por el cobarde Robert Ford',
+                        movies[index].title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
@@ -81,7 +81,7 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            '10/10',
+                            '${movies[index].voteAverage.toStringAsFixed(2)}/10',
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontSize: itemHeight * 0.03,
@@ -94,16 +94,16 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                             size: itemHeight * 0.07,
                           ),
                           const SizedBox(width: 5),
-                          Icon(
+                          movies[index].adult ? Icon(
                             Icons.eighteen_up_rating_outlined,
                             color: Colors.white,
                             size: itemHeight * 0.07,
-                          ),
+                          ) : const SizedBox(),
                         ],
                       ),
                       const SizedBox(),
                       Text(
-                        'Consectetur reprehenderit cillum eiusmod culpa eiusmod aute cillum ullamco adipisicing duis do irure. Irure eu quis nulla labore in exercitation ipsum cillum esse sit. Eiusmod ut laboris et adipisicing excepteur non commodo aute. Cillum aliquip nisi in Lorem consequat veniam voluptate sunt sit ut sit. Velit voluptate Lorem do deserunt reprehenderit. Id aute ad duis magna irure nulla. Ex tempor do elit aute commodo occaecat labore non id nulla ut ipsum est qui.',
+                        movies[index].overview.isNotEmpty ? movies[index].overview : 'No se encontro una descripción',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.justify,
@@ -119,14 +119,21 @@ class _PreviewSwiperState extends State<PreviewSwiper> {
                         height: itemHeight * 0.095,
                         child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: 10,
+                          itemCount: movies[index].genreIds.length,
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
+                          itemBuilder: (context, genreIndex) {
+                            final genreId = movies[index].genreIds[genreIndex];
+
+                            final genre = genres.firstWhere(
+                              (g) => g.id == genreId,
+                              orElse: () => Genre(id: 0, name: 'Sin Genero'),
+                            );
+                            
                             return Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: CategoryLabel(
                                 itemHeight: itemHeight,
-                                category: 'Acción',
+                                category: genre.name,
                               ),
                             );
                           },
