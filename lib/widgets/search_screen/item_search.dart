@@ -32,11 +32,13 @@ class ItemSearch extends StatelessWidget {
       ),
       title: Row(
         children: [
-          Text(
-            movie.title,
-            style: const TextStyle(
-              color: Color.fromARGB(255, 248, 240, 204),
-              fontWeight: FontWeight.bold,
+          Expanded(
+            child: Text(
+              movie.title,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 248, 240, 204),
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           movie.adult
