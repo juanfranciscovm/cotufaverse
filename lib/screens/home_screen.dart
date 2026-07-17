@@ -48,7 +48,6 @@ class HomeScreen extends StatelessWidget {
                 size: size,
                 text1: AppDictionary.translate(context, "popular_movies"),
                 text2: '.',
-                alignment: Alignment.centerRight,
               ),
               CardSwiper(movies: moviesProvider.popularMovies),
               TextWithDoubleColor(

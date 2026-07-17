@@ -6,29 +6,26 @@ class OrderByDropdownMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: IntrinsicHeight(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(
-                  AppDictionary.translate(context, "sort_by"),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+            Center(
+              child: Text(
+                AppDictionary.translate(context, "sort_by"),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(width: 20),
-            DropdownMenuOrderBy(),
-            Spacer(),
-            ButtonOrderType(),
+            const SizedBox(width: 20),
+            const DropdownMenuOrderBy(),
+            const Spacer(),
+            const ButtonOrderType(),
           ],
         ),
       ),
@@ -75,6 +72,7 @@ class DropdownMenuOrderBy extends StatefulWidget {
 class _DropdownMenuOrderByState extends State<DropdownMenuOrderBy> {
   @override
   Widget build(BuildContext context) {
+
     return DropdownMenu<OrderBy>(
       trailingIcon: const Icon(Icons.arrow_drop_down, color: Colors.white),
       selectedTrailingIcon: const Icon(
