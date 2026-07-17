@@ -3,6 +3,7 @@ import "package:google_fonts/google_fonts.dart";
 import "package:provider/provider.dart";
 import "package:cotufaverse/models/models.dart";
 import "package:cotufaverse/provider/movies_provider.dart";
+import "package:cotufaverse/utils/app_dictionary.dart";
 
 class CastingCards extends StatelessWidget {
   final Movie movie;
@@ -80,7 +81,7 @@ class CastCard extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            actor.character ?? "Desconocido",
+            actor.character ?? AppDictionary.translate(context, "unknown"),
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold,
               fontSize: 16,

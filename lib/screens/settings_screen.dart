@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "package:cotufaverse/provider/settings_provider.dart";
 import "package:cotufaverse/provider/movies_provider.dart";
+import "package:cotufaverse/utils/app_dictionary.dart";
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -12,20 +13,20 @@ class SettingsScreen extends StatelessWidget {
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Configuración')),
+      appBar: AppBar(title: Text(AppDictionary.translate(context, "settings"))),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         children: [
           SwitchListTile(
-            title: const Text("Modo oscuro"),
-            subtitle: const Text("Cambia a tu tema de preferencia para la app"),
+            title: Text(AppDictionary.translate(context, "dark_mode")),
+            subtitle: Text(AppDictionary.translate(context, "dark_mode_sub")),
             secondary: const Icon(Icons.dark_mode_outlined),
             value: settings.isDarkMode,
             onChanged: (value) => settings.isDarkMode = value,
           ),
           const Divider(),
           SwitchListTile(
-            title: const Text("Idioma de la app"),
+            title: Text(AppDictionary.translate(context, "language")),
             subtitle: Text(
               settings.isEnglish ? "English (US)" : "Español (ES)",
             ),
@@ -38,9 +39,9 @@ class SettingsScreen extends StatelessWidget {
           ),
           const Divider(),
           SwitchListTile(
-            title: const Text("Ocultar contenido +18"),
-            subtitle: const Text(
-              "Oculta las películas con clasificación para adultos en toda la app.",
+            title: Text(AppDictionary.translate(context, "adult_content")),
+            subtitle: Text(
+              AppDictionary.translate(context, "adult_content_sub"),
             ),
             secondary: const Icon(Icons.no_adult_content),
             value: settings.hideAdultContent,
@@ -51,8 +52,8 @@ class SettingsScreen extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            title: const Text("Acerca de los desarrolladores"),
-            subtitle: const Text("Conoce a los devs detrás de la app"),
+            title: Text(AppDictionary.translate(context, "about_devs")),
+            subtitle: Text(AppDictionary.translate(context, "about_devs_sub")),
             leading: const Icon(Icons.info_outline),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {

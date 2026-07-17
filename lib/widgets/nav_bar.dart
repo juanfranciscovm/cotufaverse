@@ -2,6 +2,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cotufaverse/utils/app_dictionary.dart';
 
 class NavBar extends StatelessWidget {
   final int currentIndex;
@@ -13,7 +14,10 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final double minNavBarHeight = 60;
     final size = MediaQuery.of(context).size;
-    final double navBarHeight = (size.height * 0.10).clamp(minNavBarHeight, double.infinity);
+    final double navBarHeight = (size.height * 0.10).clamp(
+      minNavBarHeight,
+      double.infinity,
+    );
     final double iconSize = navBarHeight * 0.35;
     final double textSize = navBarHeight * 0.2;
 
@@ -35,7 +39,7 @@ class NavBar extends StatelessWidget {
             color: Colors.white,
             size: iconSize,
           ),
-          label: 'Home',
+          label: AppDictionary.translate(context, "home"),
           labelStyle: GoogleFonts.poppins(
             color: Colors.white,
             fontSize: textSize,
@@ -47,7 +51,7 @@ class NavBar extends StatelessWidget {
             color: Colors.white,
             size: iconSize,
           ),
-          label: 'Buscar',
+          label: AppDictionary.translate(context, "search"),
           labelStyle: GoogleFonts.poppins(
             color: Colors.white,
             fontSize: textSize,
@@ -61,7 +65,7 @@ class NavBar extends StatelessWidget {
             color: Colors.white,
             size: iconSize,
           ),
-          label: 'Perfil',
+          label: AppDictionary.translate(context, "profile"),
           labelStyle: GoogleFonts.poppins(
             color: Colors.white,
             fontSize: textSize,
@@ -73,7 +77,7 @@ class NavBar extends StatelessWidget {
             color: Colors.white,
             size: iconSize,
           ),
-          label: 'Config',
+          label: AppDictionary.translate(context, "settings"),
           labelStyle: GoogleFonts.poppins(
             color: Colors.white,
             fontSize: textSize,

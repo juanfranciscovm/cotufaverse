@@ -1,5 +1,6 @@
 import 'package:cotufaverse/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import "package:cotufaverse/utils/app_dictionary.dart";
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,22 +33,26 @@ class HomeScreen extends StatelessWidget {
               // ),
               TextWithDoubleColor(
                 size: size,
-                text1: 'Top Películas',
+                text1: AppDictionary.translate(context, "top_movies"),
                 text2: '.',
               ),
               const CardSwiper(),
               TextWithDoubleColor(
                 size: size,
-                text1: 'Películas Populares',
+                text1: AppDictionary.translate(context, "popular_movies"),
                 text2: '.',
                 alignment: Alignment.centerRight,
               ),
               const CardSwiper(),
-              TextWithDoubleColor(size: size, text1: 'Por ', text2: 'Estrenar'),
+              TextWithDoubleColor(
+                size: size,
+                text1: AppDictionary.translate(context, "upcoming"),
+                text2: AppDictionary.translate(context, "upcoming_movies"),
+              ),
               const DetailSwiper(),
               TextWithDoubleColor(
                 size: size,
-                text1: 'Directorio de Películas',
+                text1: AppDictionary.translate(context, "movie_directory"),
                 text2: '.',
                 alignment: Alignment.center,
               ),

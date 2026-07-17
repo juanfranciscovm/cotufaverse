@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import "package:cotufaverse/utils/app_dictionary.dart";
 
 class OrderByDropdownMenu extends StatelessWidget {
   const OrderByDropdownMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: IntrinsicHeight(
         child: Row(
@@ -17,12 +17,15 @@ class OrderByDropdownMenu extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: Text(
-                  'Ordenar',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  AppDictionary.translate(context, "sort_by"),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-            SizedBox(width: 20,),
+            SizedBox(width: 20),
             DropdownMenuOrderBy(),
             Spacer(),
             ButtonOrderType(),
@@ -73,9 +76,11 @@ class _DropdownMenuOrderByState extends State<DropdownMenuOrderBy> {
   @override
   Widget build(BuildContext context) {
     return DropdownMenu<OrderBy>(
-      
       trailingIcon: const Icon(Icons.arrow_drop_down, color: Colors.white),
-      selectedTrailingIcon: const Icon(Icons.arrow_drop_up, color: Colors.white),
+      selectedTrailingIcon: const Icon(
+        Icons.arrow_drop_up,
+        color: Colors.white,
+      ),
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -83,12 +88,21 @@ class _DropdownMenuOrderByState extends State<DropdownMenuOrderBy> {
         ),
       ),
       initialSelection: OrderBy.popular,
-      textStyle: const TextStyle(color: Colors.white,),
+      textStyle: const TextStyle(color: Colors.white),
       requestFocusOnTap: false,
       dropdownMenuEntries: [
-        const DropdownMenuEntry(value: OrderBy.popular, label: 'Popular'),
-        const DropdownMenuEntry(value: OrderBy.score, label: 'Calificación'),
-        const DropdownMenuEntry(value: OrderBy.releaseDate, label: 'Fecha'),
+        DropdownMenuEntry(
+          value: OrderBy.popular,
+          label: AppDictionary.translate(context, "sort_popular"),
+        ),
+        DropdownMenuEntry(
+          value: OrderBy.score,
+          label: AppDictionary.translate(context, "sort_rating"),
+        ),
+        DropdownMenuEntry(
+          value: OrderBy.releaseDate,
+          label: AppDictionary.translate(context, "sort_date"),
+        ),
       ],
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import "package:cotufaverse/models/models.dart";
-import 'package:shared_preferences/shared_preferences.dart';
+import "package:shared_preferences/shared_preferences.dart";
 
 class MoviesProvider extends ChangeNotifier {
   final String _apiKey = "064437f6febb1ef7fba652cf84100a26";
@@ -99,6 +99,7 @@ class MoviesProvider extends ChangeNotifier {
     final response = await http.get(url);
     final genreResponse = GenreResponse.fromJson(response.body);
     movieGenres = genreResponse.genres;
+    final String allText = _language == "en-US" ? "ALL" : "TODOS";
     movieGenres.insert(0, Genre(id: 0, name: "TODOS"));
     notifyListeners();
   }

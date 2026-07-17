@@ -4,6 +4,7 @@ import "package:cotufaverse/models/models.dart";
 import "package:cotufaverse/provider/movies_provider.dart";
 import "package:cotufaverse/widgets/widgets.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cotufaverse/utils/app_dictionary.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -47,7 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
         elevation: 0,
         title: TextWithDoubleColor(
           size: size,
-          text1: "Buscar",
+          text1: AppDictionary.translate(context, "search_title"),
           text2: ".",
           padding: const EdgeInsets.all(20.0),
         ),
@@ -68,10 +69,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
-                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                   autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: "Descubre tu aventura de hoy",
+                  decoration: InputDecoration(
+                    hintText: AppDictionary.translate(context, "search_hint"),
                     hintStyle: TextStyle(color: Color.fromARGB(96, 0, 0, 0)),
                     prefixIcon: Icon(
                       Icons.search,
@@ -132,7 +133,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          "Por acá no hay cotufas...",
+                          AppDictionary.translate(context, "no_popcorn"),
                           style: GoogleFonts.poppins(
                             color: Color.fromARGB(255, 248, 240, 204),
                             fontSize: 17,
@@ -173,7 +174,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                               SizedBox(height: 5),
                               Text(
-                                "No se encontraron resultados.",
+                                AppDictionary.translate(context, "no_results"),
                                 style: GoogleFonts.poppins(
                                   color: Color.fromARGB(255, 248, 240, 204),
                                   fontSize: 17,
@@ -192,7 +193,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Resultados de la búsqueda (${movies.length})",
+                          "${AppDictionary.translate(context, "search_results")} (${movies.length})",
                           style: const TextStyle(
                             color: Color.fromARGB(255, 248, 240, 204),
                             fontSize: 16,
