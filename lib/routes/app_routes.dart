@@ -11,5 +11,6 @@ class AppRoutes {
     "/settings": (BuildContext context) => const SettingsScreen(),
     "/profile": (BuildContext context) => const ProfileScreen(),
     "/details": (BuildContext context) => const DetailsScreen(),
+    "/about_devs": (BuildContext context) => const AboutDevs(),
   };
 }
