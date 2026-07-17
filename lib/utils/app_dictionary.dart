@@ -9,7 +9,7 @@ class AppDictionary {
       'home': 'Inicio',
       'search': 'Buscar',
       'profile': 'Perfil',
-      'settings': 'Config',
+      'settings': 'Ajustes',
 
       //home
       'in_theaters': 'En Cines',
