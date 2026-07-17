@@ -28,7 +28,10 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PreviewSwiper(movies: moviesProvider.playingMovies, genres: moviesProvider.movieGenres,),
+              PreviewSwiper(
+                movies: moviesProvider.playingMovies,
+                genres: moviesProvider.movieGenres,
+              ),
               // Poner al configurar el usuario, si no borrar
               // TextWithDoubleColor(
               //   size: size,
@@ -40,16 +43,23 @@ class HomeScreen extends StatelessWidget {
                 text1: AppDictionary.translate(context, "top_movies"),
                 text2: '.',
               ),
-              CardSwiper(movies: moviesProvider.topRatedMovies,),
+              CardSwiper(movies: moviesProvider.topRatedMovies),
               TextWithDoubleColor(
                 size: size,
                 text1: AppDictionary.translate(context, "popular_movies"),
                 text2: '.',
                 alignment: Alignment.centerRight,
               ),
-              CardSwiper(movies: moviesProvider.popularMovies,),
-              TextWithDoubleColor(size: size, text1: 'Por ', text2: 'Estrenar'),
-              DetailSwiper(movies: moviesProvider.upcomingMovies, genres: moviesProvider.movieGenres,),
+              CardSwiper(movies: moviesProvider.popularMovies),
+              TextWithDoubleColor(
+                size: size,
+                text1: AppDictionary.translate(context, "upcoming"),
+                text2: AppDictionary.translate(context, "upcoming_movies"),
+              ),
+              DetailSwiper(
+                movies: moviesProvider.upcomingMovies,
+                genres: moviesProvider.movieGenres,
+              ),
               TextWithDoubleColor(
                 size: size,
                 text1: AppDictionary.translate(context, "movie_directory"),
@@ -57,9 +67,7 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.center,
               ),
               OrderByDropdownMenu(),
-              CardGrip(
-                movies: moviesProvider.playingMovies,
-              ),
+              CardGrip(movies: moviesProvider.playingMovies),
               SizedBox(height: size.height * 0.2),
             ],
           ),

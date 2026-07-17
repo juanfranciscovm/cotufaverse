@@ -29,19 +29,17 @@ class TextWithDoubleColor extends StatelessWidget {
             text: TextSpan(
               text: text1,
               style: TextStyle(
-                fontFamily: 'Agrandir',
+                fontFamily: 'AgrandirWideBold',
                 color: mainTextColor,
                 fontSize: size.height * 0.04,
-                fontWeight: FontWeight.bold,
               ),
               children: <TextSpan>[
                 TextSpan(
                   text: text2,
                   style: TextStyle(
-                    fontFamily: 'Agrandir',
+                    fontFamily: 'AgrandirWideBold',
                     color: const Color(0xFFF7C53A),
                     fontSize: size.height * 0.04,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],

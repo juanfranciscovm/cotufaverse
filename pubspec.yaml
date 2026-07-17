@@ -85,6 +85,18 @@ flutter:
     - family: Agrandir
       fonts:
         - asset: assets/fonts/agrandir.otf
+    - family: AgrandirRegular
+      fonts:
+        - asset: assets/fonts/agrandir_regular.otf
+    - family: AgrandirWide
+      fonts:
+        - asset: assets/fonts/agrandir_wide.otf
+    - family: AgrandirWideLight
+      fonts:
+        - asset: assets/fonts/AgrandirWideLight.otf
+    - family: AgrandirWideBold
+      fonts:
+        - asset: assets/fonts/agrandir_wide_bold.ttf
 
   # fonts:
   #   - family: 
