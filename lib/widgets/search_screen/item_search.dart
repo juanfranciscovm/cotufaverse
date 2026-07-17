@@ -63,7 +63,7 @@ class ItemSearch extends StatelessWidget {
         size: 16,
       ),
       onTap: () {
-        Navigator.pushNamed(context, "details", arguments: movie);
+        Navigator.pushNamed(context, "/details", arguments: movie);
       },
     );
   }

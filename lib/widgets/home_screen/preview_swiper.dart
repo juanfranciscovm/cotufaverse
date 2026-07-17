@@ -1,5 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:cotufaverse/widgets/category_label.dart';
+import 'package:cotufaverse/widgets/home_screen/category_label.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

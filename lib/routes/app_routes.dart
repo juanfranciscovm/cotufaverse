@@ -10,5 +10,6 @@ class AppRoutes {
     "/search": (BuildContext context) => const SearchScreen(),
     "/settings": (BuildContext context) => const SettingsScreen(),
     "/profile": (BuildContext context) => const ProfileScreen(),
+    "/details": (BuildContext context) => const DetailsScreen(),
   };
 }
