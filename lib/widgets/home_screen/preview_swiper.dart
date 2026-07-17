@@ -118,7 +118,6 @@ class PreviewSwiper extends StatelessWidget {
                       SizedBox(
                         height: (itemHeight * 0.095).clamp(30, itemHeight),
                         child: ListView.builder(
-                          shrinkWrap: true,
                           itemCount: movies[index].genreIds.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, genreIndex) {
