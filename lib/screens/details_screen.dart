@@ -1,7 +1,9 @@
 import "dart:ui";
+import "package:provider/provider.dart";
 import "package:flutter/material.dart";
 import "package:cotufaverse/models/models.dart";
 import "package:cotufaverse/widgets/widgets.dart";
+import "package:cotufaverse/provider/movies_provider.dart";
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -10,6 +12,11 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Movie movieModal =
         ModalRoute.of(context)!.settings.arguments as Movie;
+    final size = MediaQuery.of(context).size;
+    final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
+    final genres = moviesProvider.movieGenres
+        .where((g) => movieModal.genreIds.contains(g.id))
+        .toList();
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color overlayColor = isDark
         ? const Color.fromARGB(211, 12, 18, 63)
@@ -43,6 +50,28 @@ class DetailsScreen extends StatelessWidget {
               SliverList(
                 delegate: SliverChildListDelegate([
                   const SizedBox(height: 20),
+                  if (genres.isNotEmpty)
+                    Container(
+                      height: 35,
+                      margin: const EdgeInsets.only(bottom: 20),
+                      alignment: Alignment.center,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        itemCount: genres.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              right: index == genres.length - 1 ? 0 : 10,
+                            ),
+                            child: CategoryLabel(category: genres[index].name),
+                          );
+                        },
+                      ),
+                    ),
+                  const SizedBox(height: 10),
                   MovieOverview(movie: movieModal),
                   CastingCards(movie: movieModal),
                   const SizedBox(height: 40),
