@@ -1,3 +1,4 @@
+export 'package:cotufaverse/models/discover.dart';
 export "package:cotufaverse/models/movie.dart";
 export "package:cotufaverse/models/playing.dart";
 export "package:cotufaverse/models/credits.dart";
@@ -7,3 +8,4 @@ export "package:cotufaverse/models/top_rated.dart";
 export "package:cotufaverse/models/upcoming.dart";
 export "package:cotufaverse/models/genre.dart";
 export "package:cotufaverse/models/genre_response.dart";
+

@@ -32,17 +32,23 @@ class PreviewSwiper extends StatelessWidget {
           pagination: const SwiperPagination(),
           control: const SwiperControl(color: Colors.white),
           itemCount: movies.length,
+          onTap: (index) {
+            Navigator.pushNamed(context, '/details', arguments: movies[index]);
+          },
           itemBuilder: (context, index) {
             return Stack(
               children: [
                 SizedBox.expand(
-                  child: FadeInImage(
-                    fit: BoxFit.cover,
-                    placeholder: const AssetImage('assets/images/loading.gif'),
-                    image: NetworkImage(
-                      size.height > size.width
-                          ? movies[index].fullPosterPath
-                          : movies[index].fullBackdropPath,
+                  child: Hero(
+                    tag: movies[index].heroId,
+                    child: FadeInImage(
+                      fit: BoxFit.cover,
+                      placeholder: const AssetImage('assets/images/loading.gif'),
+                      image: NetworkImage(
+                        size.height > size.width
+                            ? movies[index].fullPosterPath
+                            : movies[index].fullBackdropPath,
+                      ),
                     ),
                   ),
                 ),
@@ -94,16 +100,20 @@ class PreviewSwiper extends StatelessWidget {
                             size: itemHeight * 0.07,
                           ),
                           const SizedBox(width: 5),
-                          movies[index].adult ? Icon(
-                            Icons.eighteen_up_rating_outlined,
-                            color: Colors.white,
-                            size: itemHeight * 0.07,
-                          ) : const SizedBox(),
+                          movies[index].adult
+                              ? Icon(
+                                  Icons.eighteen_up_rating_outlined,
+                                  color: Colors.white,
+                                  size: itemHeight * 0.07,
+                                )
+                              : const SizedBox(),
                         ],
                       ),
                       const SizedBox(),
                       Text(
-                        movies[index].overview.isNotEmpty ? movies[index].overview : 'No se encontro una descripción',
+                        movies[index].overview.isNotEmpty
+                            ? movies[index].overview
+                            : 'No se encontro una descripción',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.justify,
@@ -127,7 +137,7 @@ class PreviewSwiper extends StatelessWidget {
                               (g) => g.id == genreId,
                               orElse: () => Genre(id: 0, name: 'Sin Genero'),
                             );
-                            
+
                             return Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: CategoryLabel(

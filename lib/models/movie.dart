@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 class Movie {
+  static int movieCount = 0;
+
   bool adult;
   String? backdropPath;
   List<int> genreIds;
@@ -16,6 +18,7 @@ class Movie {
   bool video;
   double voteAverage;
   int voteCount;
+  String heroId;
 
   Movie({
     required this.adult,
@@ -33,9 +36,13 @@ class Movie {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    required this.heroId
   });
 
-  String? heroId;
+  static int assignID() {
+    movieCount++;
+    return movieCount;
+  }
 
   String get fullPosterPath {
     if (posterPath != null) {
@@ -56,18 +63,19 @@ class Movie {
   factory Movie.fromMap(Map<String, dynamic> json) => Movie(
     adult: json["adult"],
     backdropPath: json["backdrop_path"],
-    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+    genreIds: List<int>.from((json["genre_ids"] ?? []).map((x) => x)),
     id: json["id"],
     title: json["title"],
     originalLanguage: json["original_language"],
     originalTitle: json["original_title"],
     overview: json["overview"],
-    popularity: json["popularity"]?.toDouble(),
+    popularity: (json["popularity"] ?? 0).toDouble(),
     posterPath: json["poster_path"],
     releaseDate: json["release_date"],
-    softcore: json["softcore"],
-    video: json["video"],
-    voteAverage: json["vote_average"]?.toDouble(),
-    voteCount: json["vote_count"],
+    softcore: json["softcore"] ?? false,
+    video: json["video"] ?? false,
+    voteAverage: (json["vote_average"] ?? 0).toDouble(),
+    voteCount: json["vote_count"] ?? 0,
+    heroId: 'item-${Movie.assignID()}'
   );
 }

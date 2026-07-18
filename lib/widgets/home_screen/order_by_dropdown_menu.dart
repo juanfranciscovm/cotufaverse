@@ -1,11 +1,14 @@
+import 'package:cotufaverse/provider/movies_provider.dart';
 import 'package:flutter/material.dart';
 import "package:cotufaverse/utils/app_dictionary.dart";
+import 'package:provider/provider.dart';
 
 class OrderByDropdownMenu extends StatelessWidget {
   const OrderByDropdownMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final MoviesProvider moviesProvider = Provider.of(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -23,9 +26,9 @@ class OrderByDropdownMenu extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-            const DropdownMenuOrderBy(),
+            DropdownMenuOrderBy(moviesProvider: moviesProvider),
             const Spacer(),
-            const ButtonOrderType(),
+            ButtonOrderType(moviesProvider: moviesProvider),
           ],
         ),
       ),
@@ -34,15 +37,15 @@ class OrderByDropdownMenu extends StatelessWidget {
 }
 
 class ButtonOrderType extends StatefulWidget {
-  const ButtonOrderType({super.key});
+  const ButtonOrderType({super.key, required this.moviesProvider});
+
+  final MoviesProvider moviesProvider;
 
   @override
   State<ButtonOrderType> createState() => _ButtonOrderTypeState();
 }
 
 class _ButtonOrderTypeState extends State<ButtonOrderType> {
-  bool orderDesc = true;
-
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
@@ -54,16 +57,24 @@ class _ButtonOrderTypeState extends State<ButtonOrderType> {
       ),
       onPressed: () {
         setState(() {
-          orderDesc = !orderDesc;
+          widget.moviesProvider.orderDescDiscover =
+              !widget.moviesProvider.orderDescDiscover;
+          widget.moviesProvider.newDiscoverOrder();
         });
       },
-      child: Icon(orderDesc ? Icons.arrow_downward : Icons.arrow_upward),
+      child: Icon(
+        widget.moviesProvider.orderDescDiscover
+            ? Icons.arrow_downward
+            : Icons.arrow_upward,
+      ),
     );
   }
 }
 
 class DropdownMenuOrderBy extends StatefulWidget {
-  const DropdownMenuOrderBy({super.key});
+  const DropdownMenuOrderBy({super.key, required this.moviesProvider});
+
+  final MoviesProvider moviesProvider;
 
   @override
   State<DropdownMenuOrderBy> createState() => _DropdownMenuOrderByState();
@@ -72,8 +83,8 @@ class DropdownMenuOrderBy extends StatefulWidget {
 class _DropdownMenuOrderByState extends State<DropdownMenuOrderBy> {
   @override
   Widget build(BuildContext context) {
-
     return DropdownMenu<OrderBy>(
+      initialSelection: widget.moviesProvider.selectedOrderByDiscover,
       trailingIcon: const Icon(Icons.arrow_drop_down, color: Colors.white),
       selectedTrailingIcon: const Icon(
         Icons.arrow_drop_up,
@@ -85,9 +96,13 @@ class _DropdownMenuOrderByState extends State<DropdownMenuOrderBy> {
           borderSide: const BorderSide(color: Colors.white, width: 2),
         ),
       ),
-      initialSelection: OrderBy.popular,
       textStyle: const TextStyle(color: Colors.white),
       requestFocusOnTap: false,
+      onSelected: (value) {
+        if (value == null) return;
+        widget.moviesProvider.selectedOrderByDiscover = value;
+        widget.moviesProvider.newDiscoverOrder();
+      },
       dropdownMenuEntries: [
         DropdownMenuEntry(
           value: OrderBy.popular,
@@ -105,5 +120,3 @@ class _DropdownMenuOrderByState extends State<DropdownMenuOrderBy> {
     );
   }
 }
-
-enum OrderBy { popular, score, releaseDate }

@@ -8,11 +8,14 @@ class MoviesProvider extends ChangeNotifier {
   final String _baseUrl = "api.themoviedb.org";
   String _language = "es-VE";
   bool _hideAdultContent = false;
+  OrderBy selectedOrderByDiscover = OrderBy.popular;
+  bool orderDescDiscover = true;
 
   List<Movie> playingMovies = [];
   List<Movie> popularMovies = [];
   List<Movie> topRatedMovies = [];
   List<Movie> upcomingMovies = [];
+  List<Movie> discoverMovies = [];
   List<Genre> movieGenres = [];
 
   Map<int, List<Cast>> movieCast = {};
@@ -20,6 +23,7 @@ class MoviesProvider extends ChangeNotifier {
   int _popularPage = 0;
   int _topRatedPage = 0;
   int _upcomingPage = 0;
+  int _discoverPage = 0;
 
   MoviesProvider() {
     _loadInitialSettings();
@@ -36,6 +40,7 @@ class MoviesProvider extends ChangeNotifier {
     getMovieGenres();
     getTopRatedMovies();
     getUpcomingMovies();
+    getDiscoverMovies();
   }
 
   //limpiar los datos
@@ -44,15 +49,31 @@ class MoviesProvider extends ChangeNotifier {
     popularMovies.clear();
     topRatedMovies.clear();
     upcomingMovies.clear();
+    discoverMovies.clear();
     movieGenres.clear();
     movieCast.clear();
+
     _popularPage = 0;
+    _topRatedPage = 0;
+    _upcomingPage = 0;
+    _discoverPage = 0;
 
     getPlayingMovies();
     getPopularMovies();
     getMovieGenres();
     getTopRatedMovies();
     getUpcomingMovies();
+    getDiscoverMovies();
+
+    notifyListeners();
+  }
+
+  void newDiscoverOrder() {
+    discoverMovies.clear();
+
+    _discoverPage = 0;
+
+    getDiscoverMovies();
 
     notifyListeners();
   }
@@ -67,12 +88,17 @@ class MoviesProvider extends ChangeNotifier {
     _resetAndFetch();
   }
 
-  Future<String> _getJsonData(String endpoint, [int? page = 1]) async {
+  Future<String> _getJsonData(
+    String endpoint, [
+    int? page = 1,
+    Map<String, String>? options,
+  ]) async {
     var url = Uri.https(_baseUrl, endpoint, {
       "api_key": _apiKey,
       "language": _language,
       "page": "$page",
       "include_adult": _hideAdultContent ? "false" : "true",
+      ...?options?.cast<String, String>(),
     });
 
     final response = await http.get(url);
@@ -107,6 +133,30 @@ class MoviesProvider extends ChangeNotifier {
     final jsonData = await _getJsonData('3/movie/upcoming', _upcomingPage);
     final upcomingData = Upcoming.fromJson(jsonData);
     upcomingMovies = [...upcomingMovies, ...upcomingData.movie];
+    notifyListeners();
+  }
+
+  String orderCalculator() {
+    switch (selectedOrderByDiscover) {
+      case OrderBy.popular:
+        if (orderDescDiscover) return 'popularity.desc';
+        return 'popularity.asc';
+      case OrderBy.releaseDate:
+        if (orderDescDiscover) return 'primary_relase_date.desc';
+        return 'primary_relase_date.asc';
+      case OrderBy.score:
+        if (orderDescDiscover) return 'vote_average.desc';
+        return 'vote_average.asc';
+    }
+  }
+
+  void getDiscoverMovies() async {
+    _discoverPage++;
+    final jsonData = await _getJsonData('3/discover/movie', _discoverPage, {
+      'sort_by': orderCalculator(),
+    });
+    final discoverData = Discover.fromJson(jsonData);
+    discoverMovies = [...discoverMovies, ...discoverData.movie];
     notifyListeners();
   }
 
@@ -155,3 +205,5 @@ class MoviesProvider extends ChangeNotifier {
     return searchResponse.results;
   }
 }
+
+enum OrderBy { popular, score, releaseDate }
