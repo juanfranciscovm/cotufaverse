@@ -26,7 +26,7 @@ class _CardSwiperState extends State<CardSwiper> {
     _scrollController.addListener(() {
       double currentPosition = _scrollController.position.pixels;
       double maxPosition = _scrollController.position.maxScrollExtent;
-a
+
       if (currentPosition >= maxPosition - 200) {
         widget.nextMoviePage();
       }
