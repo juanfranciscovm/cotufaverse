@@ -35,6 +35,7 @@ class AppDictionary {
       'about_devs_sub': 'Conoce al equipo detrás de la app',
 
       //misc
+      'favorites': 'Favoritos',
       'top_movies': 'Top Películas',
       'popular_movies': 'Películas Populares',
       'upcoming': 'Por ',
@@ -77,6 +78,7 @@ class AppDictionary {
       'about_devs_sub': 'Meet the team behind the app',
 
       //misc
+      'favorites': 'Favorites',
       'top_movies': 'Top Movies',
       'popular_movies': 'Popular Movies',
       'upcoming': 'Upcoming ',

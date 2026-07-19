@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               widget.moviesProvider.login && widget.moviesProvider.favoriteMovies.isNotEmpty
                   ? TextWithDoubleColor(
                       size: size,
-                      text1: 'Favoritos ',
+                      text1: AppDictionary.translate(context, 'favorites'),
                       text2: '.',
                     )
                   : const SizedBox(),
