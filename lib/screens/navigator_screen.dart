@@ -18,9 +18,11 @@ class _NavigatorState extends State<NavigatorScreen> {
   Widget build(BuildContext context) {
     final MoviesProvider moviesProvider = Provider.of(context);
     final List<Widget> screens = [
-      HomeScreen(moviesProvider: moviesProvider,),
+      HomeScreen(moviesProvider: moviesProvider),
       const SearchScreen(),
-      const ProfileScreen(),
+      !moviesProvider.login
+          ? LoginScreen(onLoginComplete: () => setState(() {}))
+          : ProfileScreen(),
       const SettingsScreen(),
     ];
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;

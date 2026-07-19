@@ -1,13 +1,19 @@
+import "dart:convert";
+
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import "package:cotufaverse/models/models.dart";
 import "package:shared_preferences/shared_preferences.dart";
+import "package:url_launcher/url_launcher.dart";
 
 class MoviesProvider extends ChangeNotifier {
   final String _apiKey = "064437f6febb1ef7fba652cf84100a26";
   final String _baseUrl = "api.themoviedb.org";
+  String? _sessionID;
+  Account? account;
+  bool login = false;
   String _language = "es-VE";
-  bool _hideAdultContent = false;
+  bool _hideAdultContent = true;
   OrderBy selectedOrderByDiscover = OrderBy.popular;
   bool orderDescDiscover = true;
 
@@ -17,6 +23,7 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> upcomingMovies = [];
   List<Movie> discoverMovies = [];
   List<Genre> movieGenres = [];
+  List<Movie> favoriteMovies = [];
 
   Map<int, List<Cast>> movieCast = {};
 
@@ -24,6 +31,7 @@ class MoviesProvider extends ChangeNotifier {
   int _topRatedPage = 0;
   int _upcomingPage = 0;
   int _discoverPage = 0;
+  int _favoritePage = 0;
 
   MoviesProvider() {
     _loadInitialSettings();
@@ -35,6 +43,14 @@ class MoviesProvider extends ChangeNotifier {
     _language = isEnglish ? "en-US" : "es-VE";
     _hideAdultContent = prefs.getBool("hideAdultContent") ?? false;
 
+    _sessionID = prefs.getString('session_id');
+    login = _sessionID != null;
+
+    if (login) {
+      await getAccount();
+      getFavoriteMovies();
+    }
+
     getPlayingMovies();
     getPopularMovies();
     getMovieGenres();
@@ -44,7 +60,7 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   //limpiar los datos
-  void _resetAndFetch() {
+  void _resetAndFetch() async {
     playingMovies.clear();
     popularMovies.clear();
     topRatedMovies.clear();
@@ -52,11 +68,14 @@ class MoviesProvider extends ChangeNotifier {
     discoverMovies.clear();
     movieGenres.clear();
     movieCast.clear();
+    account = null;
+    favoriteMovies.clear();
 
     _popularPage = 0;
     _topRatedPage = 0;
     _upcomingPage = 0;
     _discoverPage = 0;
+    _favoritePage = 0;
 
     getPlayingMovies();
     getPopularMovies();
@@ -64,7 +83,10 @@ class MoviesProvider extends ChangeNotifier {
     getTopRatedMovies();
     getUpcomingMovies();
     getDiscoverMovies();
-
+    if (login) {
+      await getAccount();
+      getFavoriteMovies();
+    }
     notifyListeners();
   }
 
@@ -115,7 +137,7 @@ class MoviesProvider extends ChangeNotifier {
   void getPopularMovies() async {
     _popularPage++;
     final jsonData = await _getJsonData("/3/movie/popular", _popularPage);
-    final popularData = Popular.fromJson(jsonData);
+    final popularData = Favorites.fromJson(jsonData);
     popularMovies = [...popularMovies, ...popularData.movie];
     notifyListeners();
   }
@@ -203,6 +225,135 @@ class MoviesProvider extends ChangeNotifier {
     final response = await http.get(url);
     final searchResponse = Search.fromJson(response.body);
     return searchResponse.results;
+  }
+
+  Future getRequestToken() async {
+    final url = Uri.https(_baseUrl, '3/authentication/token/new', {
+      'api_key': _apiKey,
+    });
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final requestTokenResponse = jsonDecode(response.body);
+      return requestTokenResponse['request_token'];
+    }
+    return null;
+  }
+
+  Future authorizeToken(String token) async {
+    final String redirectUrl = 'cotufaverse://callback';
+
+    final authUrl = Uri.parse(
+      'https://www.themoviedb.org/authenticate/$token?redirect_to=$redirectUrl',
+    );
+
+    if (await canLaunchUrl(authUrl)) {
+      await launchUrl(authUrl, mode: LaunchMode.externalApplication);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future createSession(String approvedToken) async {
+    final url = Uri.https(_baseUrl, '3/authentication/session/new', {
+      'api_key': _apiKey,
+    });
+
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'request_token': approvedToken}),
+    );
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      _sessionID = data['session_id'];
+      login = true;
+      await getAccount();
+
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('session_id', _sessionID!);
+
+      notifyListeners();
+
+      return true;
+    }
+    return false;
+  }
+
+  void logOut() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('session_id');
+
+    _sessionID = null;
+    login = false;
+
+    notifyListeners();
+  }
+
+  Future getAccount() async {
+    if (_sessionID == null) return;
+
+    final url = Uri.https(_baseUrl, '3/account', {
+      'api_key': _apiKey,
+      'session_id': _sessionID,
+    });
+
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      account = Account.fromJson(response.body);
+    }
+  }
+
+  void getFavoriteMovies() async {
+    _favoritePage++;
+    final url =
+        Uri.https(_baseUrl, '3/account/${account!.id}/favorite/movies', {
+          'api_key': _apiKey,
+          'session_id': _sessionID,
+          'language': _language,
+          'page': _favoritePage.toString(),
+        });
+
+    final response = await http.get(url);
+
+    final favoritesResponse = Favorites.fromJson(response.body);
+
+    favoriteMovies = [...favoriteMovies, ...favoritesResponse.movie];
+    notifyListeners();
+  }
+
+  Future<bool> toogleFavorite(Movie movie, bool isFavorite) async {
+    if (_sessionID == null || account == null) return false;
+
+    final url = Uri.https(_baseUrl, '3/account/${account!.id}/favorite', {
+      'api_key': _apiKey,
+      'session_id': _sessionID,
+    });
+
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'media_type': 'movie',
+        'media_id': movie.id,
+        'favorite': isFavorite,
+      }),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      favoriteMovies.clear();
+      _favoritePage = 0;
+      getFavoriteMovies();
+      return true;
+    }
+    return false;
+  }
+
+  bool checkFavoriteMovie(Movie movie) {
+    if (login == false) return false;
+    bool movieInFavoriteList = favoriteMovies.any((m) => m.id == movie.id);
+
+    return movieInFavoriteList;
   }
 }
 

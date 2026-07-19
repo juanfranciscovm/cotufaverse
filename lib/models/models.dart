@@ -1,3 +1,5 @@
+export 'package:cotufaverse/models/favorites.dart';
+export 'package:cotufaverse/models/account.dart';
 export 'package:cotufaverse/models/discover.dart';
 export "package:cotufaverse/models/movie.dart";
 export "package:cotufaverse/models/playing.dart";

@@ -1,12 +1,20 @@
+import "package:cotufaverse/provider/movies_provider.dart";
 import "package:flutter/material.dart";
 import "package:cotufaverse/models/models.dart";
+import "package:provider/provider.dart";
 
-class MovieDetailsAppbar extends StatelessWidget {
+class MovieDetailsAppbar extends StatefulWidget {
   final Movie movie;
   const MovieDetailsAppbar({super.key, required this.movie});
 
   @override
+  State<MovieDetailsAppbar> createState() => _MovieDetailsAppbarState();
+}
+
+class _MovieDetailsAppbarState extends State<MovieDetailsAppbar> {
+  @override
   Widget build(BuildContext context) {
+    MoviesProvider moviesProvider = Provider.of<MoviesProvider>(context);
     final size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
     final isVertical = orientation == Orientation.portrait;
@@ -21,6 +29,41 @@ class MovieDetailsAppbar extends StatelessWidget {
         kToolbarHeight + MediaQuery.of(context).padding.top;
 
     return SliverAppBar(
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(Icons.arrow_back),
+        style: IconButton.styleFrom(
+          backgroundColor: Colors.black38,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+        ),
+      ),
+      actions: [
+        moviesProvider.login
+            ? IconButton(
+                onPressed: () {
+                  moviesProvider.toogleFavorite(
+                    widget.movie,
+                    !moviesProvider.checkFavoriteMovie(widget.movie),
+                  );
+                },
+                icon: Icon(
+                  moviesProvider.checkFavoriteMovie(widget.movie)
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                ),
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.black38,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                ),
+              )
+            : const SizedBox(),
+      ],
       backgroundColor: Colors.transparent,
       elevation: 0,
       foregroundColor: const Color(0xFFFFC527),
@@ -59,8 +102,8 @@ class MovieDetailsAppbar extends StatelessWidget {
             children: [
               FlexibleSpaceBar(
                 background: isVertical
-                    ? _PortraitBackground(movie: movie)
-                    : _LandscapeBackground(movie: movie),
+                    ? _PortraitBackground(movie: widget.movie)
+                    : _LandscapeBackground(movie: widget.movie),
               ),
 
               Positioned(
@@ -79,7 +122,7 @@ class MovieDetailsAppbar extends StatelessWidget {
                         expandRatio,
                       )!,
                       child: Text(
-                        movie.title,
+                        widget.movie.title,
                         style: TextStyle(
                           fontFamily: "Agrandir",
                           fontSize: Tween<double>(
@@ -107,7 +150,7 @@ class MovieDetailsAppbar extends StatelessWidget {
                             children: [
                               const SizedBox(height: 4),
                               Text(
-                                movie.originalTitle,
+                                widget.movie.originalTitle,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: textColor.withValues(alpha: 0.7),
@@ -125,7 +168,7 @@ class MovieDetailsAppbar extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 5),
                                   Text(
-                                    "${movie.voteAverage.round()}/10",
+                                    "${widget.movie.voteAverage.round()}/10",
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -157,7 +200,7 @@ class _PortraitBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: movie.heroId!,
+      tag: movie.heroId,
       child: ShaderMask(
         shaderCallback: (rect) {
           return const LinearGradient(
@@ -194,7 +237,7 @@ class _LandscapeBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: movie.heroId!,
+      tag: movie.heroId,
       child: Row(
         children: [
           Expanded(
@@ -212,7 +255,9 @@ class _LandscapeBackground extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: FadeInImage(
-                      placeholder: const AssetImage("assets/images/loading.gif"),
+                      placeholder: const AssetImage(
+                        "assets/images/loading.gif",
+                      ),
                       image: NetworkImage(movie.fullPosterPath),
                       fit: BoxFit.cover,
                       width: double.infinity,
@@ -239,7 +284,11 @@ class _LandscapeBackground extends StatelessWidget {
                 return const LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Colors.black, Colors.transparent],
+                  colors: [
+                    Colors.transparent,
+                    Colors.black,
+                    Colors.transparent,
+                  ],
                   stops: [0.0, 0.4, 1.0],
                 ).createShader(rect);
               },
