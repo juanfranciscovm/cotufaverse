@@ -2,12 +2,42 @@ import 'package:cotufaverse/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
 
-class CardSwiper extends StatelessWidget {
-  const CardSwiper({super.key, required this.movies});
+class CardSwiper extends StatefulWidget {
+  const CardSwiper({
+    super.key,
+    required this.movies,
+    required this.nextMoviePage,
+  });
 
   final List<Movie> movies;
+  final VoidCallback nextMoviePage;
 
+  @override
+  State<CardSwiper> createState() => _CardSwiperState();
+}
+
+class _CardSwiperState extends State<CardSwiper> {
+  final ScrollController _scrollController = ScrollController();
   final double _aspectRatio = 2 / 3;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      double currentPosition = _scrollController.position.pixels;
+      double maxPosition = _scrollController.position.maxScrollExtent;
+
+      if (currentPosition >= maxPosition - 200) {
+        widget.nextMoviePage();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +56,12 @@ class CardSwiper extends StatelessWidget {
       height: itemHeight,
 
       child: ListView.builder(
+        controller: _scrollController,
         scrollDirection: Axis.horizontal,
-        itemCount: movies.length,
+        itemCount: widget.movies.length,
         itemBuilder: (context, index) {
           return PosterMovieCard(
-            movie: movies[index],
+            movie: widget.movies[index],
             itemHeight: itemHeight,
             itemWidth: itemWidth,
             index: index,

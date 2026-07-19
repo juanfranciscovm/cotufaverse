@@ -1,7 +1,8 @@
+import 'package:cotufaverse/provider/movies_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:cotufaverse/screens/app_screens.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
-import 'package:cotufaverse/themes/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class NavigatorScreen extends StatefulWidget {
   const NavigatorScreen({super.key});
@@ -12,14 +13,16 @@ class NavigatorScreen extends StatefulWidget {
 
 class _NavigatorState extends State<NavigatorScreen> {
   int _currentIndex = 0;
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const SearchScreen(),
-    const ProfileScreen(),
-    const SettingsScreen(),
-  ];
+
   @override
   Widget build(BuildContext context) {
+    final MoviesProvider moviesProvider = Provider.of(context);
+    final List<Widget> screens = [
+      HomeScreen(moviesProvider: moviesProvider,),
+      const SearchScreen(),
+      const ProfileScreen(),
+      const SettingsScreen(),
+    ];
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       extendBody: true,
@@ -38,7 +41,7 @@ class _NavigatorState extends State<NavigatorScreen> {
           color: isDarkMode ? null : Colors.white,
         ),
 
-        child: IndexedStack(index: _currentIndex, children: _screens),
+        child: IndexedStack(index: _currentIndex, children: screens),
       ),
 
       bottomNavigationBar: NavBar(

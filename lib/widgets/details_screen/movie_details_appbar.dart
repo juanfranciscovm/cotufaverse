@@ -156,29 +156,32 @@ class _PortraitBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: (rect) {
-        return const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.black, Colors.black, Colors.transparent],
-          stops: [0.0, 0.6, 1.0],
-        ).createShader(rect);
-      },
-      blendMode: BlendMode.dstIn,
-      child: FadeInImage(
-        placeholder: const AssetImage("assets/images/loading.gif"),
-        image: NetworkImage(movie.fullPosterPath),
-        fit: BoxFit.cover,
-        imageErrorBuilder: (context, error, stackTrace) {
-          return const Center(
-            child: Icon(
-              Icons.movie_outlined,
-              size: 80,
-              color: Color.fromARGB(60, 255, 255, 255),
-            ),
-          );
+    return Hero(
+      tag: movie.heroId!,
+      child: ShaderMask(
+        shaderCallback: (rect) {
+          return const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.black, Colors.black, Colors.transparent],
+            stops: [0.0, 0.6, 1.0],
+          ).createShader(rect);
         },
+        blendMode: BlendMode.dstIn,
+        child: FadeInImage(
+          placeholder: const AssetImage("assets/images/loading.gif"),
+          image: NetworkImage(movie.fullPosterPath),
+          fit: BoxFit.cover,
+          imageErrorBuilder: (context, error, stackTrace) {
+            return const Center(
+              child: Icon(
+                Icons.movie_outlined,
+                size: 80,
+                color: Color.fromARGB(60, 255, 255, 255),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -190,66 +193,69 @@ class _LandscapeBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 4,
-          child: Container(
-            padding: EdgeInsets.only(
-              left: 55,
-              top: MediaQuery.of(context).padding.top + 15,
-              bottom: 20,
-              right: 15,
-            ),
-            child: Center(
-              child: AspectRatio(
-                aspectRatio: 2 / 3,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: FadeInImage(
-                    placeholder: const AssetImage("assets/images/loading.gif"),
-                    image: NetworkImage(movie.fullPosterPath),
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    imageErrorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: const Color.fromARGB(31, 0, 0, 0),
-                        child: const Icon(
-                          Icons.movie_outlined,
-                          size: 50,
-                          color: Color.fromARGB(60, 255, 255, 255),
-                        ),
-                      );
-                    },
+    return Hero(
+      tag: movie.heroId!,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 4,
+            child: Container(
+              padding: EdgeInsets.only(
+                left: 55,
+                top: MediaQuery.of(context).padding.top + 15,
+                bottom: 20,
+                right: 15,
+              ),
+              child: Center(
+                child: AspectRatio(
+                  aspectRatio: 2 / 3,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: FadeInImage(
+                      placeholder: const AssetImage("assets/images/loading.gif"),
+                      image: NetworkImage(movie.fullPosterPath),
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: const Color.fromARGB(31, 0, 0, 0),
+                          child: const Icon(
+                            Icons.movie_outlined,
+                            size: 50,
+                            color: Color.fromARGB(60, 255, 255, 255),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          flex: 6,
-          child: ShaderMask(
-            shaderCallback: (rect) {
-              return const LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.bottomCenter,
-                colors: [Colors.transparent, Colors.black, Colors.transparent],
-                stops: [0.0, 0.4, 1.0],
-              ).createShader(rect);
-            },
-            blendMode: BlendMode.dstIn,
-            child: FadeInImage(
-              placeholder: const AssetImage("assets/images/loading.gif"),
-              image: NetworkImage(movie.fullBackdropPath),
-              fit: BoxFit.cover,
-              imageErrorBuilder: (context, error, stackTrace) {
-                return Container(color: Colors.transparent);
+          Expanded(
+            flex: 6,
+            child: ShaderMask(
+              shaderCallback: (rect) {
+                return const LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, Colors.black, Colors.transparent],
+                  stops: [0.0, 0.4, 1.0],
+                ).createShader(rect);
               },
+              blendMode: BlendMode.dstIn,
+              child: FadeInImage(
+                placeholder: const AssetImage("assets/images/loading.gif"),
+                image: NetworkImage(movie.fullBackdropPath),
+                fit: BoxFit.cover,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Container(color: Colors.transparent);
+                },
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

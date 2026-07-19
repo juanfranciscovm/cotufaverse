@@ -2,18 +2,83 @@ import 'package:cotufaverse/provider/movies_provider.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import "package:cotufaverse/utils/app_dictionary.dart";
-import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key, required this.moviesProvider});
+
+  final MoviesProvider moviesProvider;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  double? activateButtonPosition;
+  bool activateButton = false;
+
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      double currentPosition = _scrollController.position.pixels;
+      double maxPosition = _scrollController.position.maxScrollExtent;
+
+      if (activateButton && (currentPosition < activateButtonPosition!)) {
+        setState(() {
+          activateButton = false;
+        });
+      }
+
+      if ((activateButtonPosition != null) &&
+          (currentPosition >= activateButtonPosition!)) {
+        if (!activateButton) {
+          setState(() {
+            activateButton = true;
+          });
+        }
+      }
+
+      if (currentPosition >= maxPosition - 200) {
+        activateButtonPosition ??= maxPosition;
+        widget.moviesProvider.getDiscoverMovies();
+        if (!activateButton) activateButton = true;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final moviesProvider = Provider.of<MoviesProvider>(context);
-
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(
+          bottom: (size.height * 0.1).clamp(60, size.height),
+        ),
+        child: activateButton
+            ? FloatingActionButton(
+                child: const Icon(Icons.arrow_upward),
+                onPressed: () {
+                  setState(() {
+                    activateButton = activateButton = false;
+                  });
+                  _scrollController.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              )
+            : const SizedBox(),
+      ),
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
         size: size,
@@ -22,6 +87,7 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: SafeArea(
           top: false,
           bottom: false,
@@ -31,8 +97,8 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PreviewSwiper(
-                movies: moviesProvider.playingMovies,
-                genres: moviesProvider.movieGenres,
+                movies: widget.moviesProvider.playingMovies,
+                genres: widget.moviesProvider.movieGenres,
               ),
               // Poner al configurar el usuario, si no borrar
               // TextWithDoubleColor(
@@ -45,21 +111,28 @@ class HomeScreen extends StatelessWidget {
                 text1: AppDictionary.translate(context, "top_movies"),
                 text2: '.',
               ),
-              CardSwiper(movies: moviesProvider.topRatedMovies),
+              CardSwiper(
+                movies: widget.moviesProvider.topRatedMovies,
+                nextMoviePage: widget.moviesProvider.getTopRatedMovies,
+              ),
               TextWithDoubleColor(
                 size: size,
                 text1: AppDictionary.translate(context, "popular_movies"),
                 text2: '.',
               ),
-              CardSwiper(movies: moviesProvider.popularMovies),
+              CardSwiper(
+                movies: widget.moviesProvider.popularMovies,
+                nextMoviePage: widget.moviesProvider.getPopularMovies,
+              ),
               TextWithDoubleColor(
                 size: size,
                 text1: AppDictionary.translate(context, "upcoming"),
                 text2: AppDictionary.translate(context, "upcoming_movies"),
               ),
               DetailSwiper(
-                movies: moviesProvider.upcomingMovies,
-                genres: moviesProvider.movieGenres,
+                movies: widget.moviesProvider.upcomingMovies,
+                genres: widget.moviesProvider.movieGenres,
+                nextMoviePage: widget.moviesProvider.getUpcomingMovies,
               ),
               TextWithDoubleColor(
                 size: size,
@@ -67,8 +140,8 @@ class HomeScreen extends StatelessWidget {
                 text2: '.',
                 alignment: Alignment.center,
               ),
-              OrderByDropdownMenu(),
-              CardGrip(movies: moviesProvider.playingMovies),
+              const OrderByDropdownMenu(),
+              CardGrip(movies: widget.moviesProvider.discoverMovies),
               SizedBox(height: size.height * 0.2),
             ],
           ),

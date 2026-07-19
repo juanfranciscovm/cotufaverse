@@ -8,7 +8,6 @@ class ItemSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    movie.heroId = "item-${movie.id}";
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color titleColor = isDark
         ? const Color(0xFFF8F0CC)
@@ -20,7 +19,7 @@ class ItemSearch extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       leading: Hero(
-        tag: movie.heroId!,
+        tag: movie.heroId,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),
           child: Image.network(
