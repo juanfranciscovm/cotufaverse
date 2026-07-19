@@ -14,3 +14,4 @@ export "package:cotufaverse/widgets/details_screen/casting_cards.dart";
 export "package:cotufaverse/widgets/details_screen/movie_overview.dart";
 export "package:cotufaverse/widgets/details_screen/poster_and_title.dart";
 export "package:cotufaverse/widgets/details_screen/movie_details_appbar.dart";
+export "package:cotufaverse/widgets/infoRowADev.dart";
