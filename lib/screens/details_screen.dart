@@ -12,7 +12,6 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Movie movieModal =
         ModalRoute.of(context)!.settings.arguments as Movie;
-    final size = MediaQuery.of(context).size;
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
     final genres = moviesProvider.movieGenres
         .where((g) => movieModal.genreIds.contains(g.id))

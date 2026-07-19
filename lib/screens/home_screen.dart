@@ -101,11 +101,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 genres: widget.moviesProvider.movieGenres,
               ),
               // Poner al configurar el usuario, si no borrar
-              // TextWithDoubleColor(
-              //   size: size,
-              //   text1: 'Películas ',
-              //   text2: 'Recomendadas',
-              // ),
+              widget.moviesProvider.login && widget.moviesProvider.favoriteMovies.isNotEmpty
+                  ? TextWithDoubleColor(
+                      size: size,
+                      text1: AppDictionary.translate(context, 'favorites'),
+                      text2: '.',
+                    )
+                  : const SizedBox(),
+              widget.moviesProvider.login && widget.moviesProvider.favoriteMovies.isNotEmpty
+                  ? CardSwiper(
+                      movies: widget.moviesProvider.favoriteMovies,
+                      nextMoviePage: widget.moviesProvider.getFavoriteMovies,
+                    )
+                  : const SizedBox(),
               TextWithDoubleColor(
                 size: size,
                 text1: AppDictionary.translate(context, "top_movies"),

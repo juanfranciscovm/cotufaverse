@@ -1,6 +1,8 @@
 import 'package:cotufaverse/models/models.dart';
+import 'package:cotufaverse/provider/movies_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class PosterMovieCard extends StatelessWidget {
   const PosterMovieCard({
@@ -20,6 +22,7 @@ class PosterMovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MoviesProvider moviesProvider = Provider.of(context);
 
     int score = movie.voteAverage.round();
 
@@ -45,17 +48,19 @@ class PosterMovieCard extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: Hero(
-          tag: movie.heroId!,
+          tag: movie.heroId,
           child: Material(
+            borderRadius: BorderRadius.circular(10),
             child: InkWell(
+              
               onTap: () {
                 Navigator.pushNamed(context, '/details', arguments: movie);
               },
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(10),
               child: Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(10),
                     child: SizedBox.expand(
                       child: FadeInImage(
                         fit: BoxFit.cover,
@@ -68,7 +73,7 @@ class PosterMovieCard extends StatelessWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -135,6 +140,19 @@ class PosterMovieCard extends StatelessWidget {
                   Positioned(
                     top: 10,
                     right: 10,
+                    child: moviesProvider.checkFavoriteMovie(movie)
+                        ? CircleAvatar(
+                          backgroundColor: Colors.black26,
+                          child: Icon(
+                              Icons.favorite,
+                              color: const Color(0xFFF7C53A),
+                            ),
+                        )
+                        : const SizedBox(),
+                  ),
+                  Positioned(
+                    top: 10,
+                    left: 10,
                     child: movie.adult
                         ? Icon(
                             Icons.eighteen_up_rating_outlined,
