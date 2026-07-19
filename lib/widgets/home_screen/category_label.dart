@@ -9,8 +9,7 @@ class CategoryLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color itemColor = isDark ? Colors.white : const Color(0xFF0C123F);
+    final Color itemColor = Colors.white;
     final double fontSize = itemHeight != null ? (itemHeight! * 0.025) : 14;
     return Container(
       alignment: Alignment.center,
