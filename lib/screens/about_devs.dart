@@ -41,102 +41,104 @@ class AboutDevs extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 //avatares
-                SizedBox(
-                  height: 220,
-                  width: double.infinity,
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    alignment: Alignment.center,
-                    children: [
-                      //avatar juan
-                      Positioned(
-                        right: (size.width / 2) + 9,
-                        top: 40,
-                        child: SizedBox(
-                          width: 140,
-                          height: 140,
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              const CircleAvatar(
-                                radius: 70,
-                                backgroundColor: Colors.white,
-                              ),
-                              ClipPath(
-                                clipper: avatarClipper(),
-                                child: Stack(
-                                  clipBehavior: Clip.none,
-                                  children: [
-                                    Positioned(
-                                      right: -14,
-                                      top: -19,
-                                      child: Image.asset(
-                                        "assets/images/avatar_juan.png",
-                                        width: 160,
-                                      ),
-                                    ),
-                                  ],
+                Center(
+                  child: SizedBox(
+                    height: 220,
+                    width: 340,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.center,
+                      children: [
+                        //avatar juan
+                        Positioned(
+                          left: 20,
+                          top: 40,
+                          child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                const CircleAvatar(
+                                  radius: 70,
+                                  backgroundColor: Colors.white,
                                 ),
-                              ),
-                            ],
+                                ClipPath(
+                                  clipper: avatarClipper(),
+                                  child: Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      Positioned(
+                                        right: -14,
+                                        top: -19,
+                                        child: Image.asset(
+                                          "assets/images/avatar_juan.png",
+                                          width: 160,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      //avatar gabriel
-                      Positioned(
-                        left: (size.width / 2) + 9,
-                        top: 40,
-                        child: SizedBox(
-                          width: 140,
-                          height: 140,
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              const CircleAvatar(
-                                radius: 70,
-                                backgroundColor: Colors.white,
-                              ),
-                              ClipPath(
-                                clipper: avatarClipper(),
-                                child: Stack(
-                                  clipBehavior: Clip.none,
-                                  children: [
-                                    Positioned(
-                                      left: -14,
-                                      top: -20,
-                                      child: Image.asset(
-                                        "assets/images/avatar_gabriel.png",
-                                        width: 160,
-                                      ),
-                                    ),
-                                  ],
+                        //avatar gabriel
+                        Positioned(
+                          right: 20,
+                          top: 40,
+                          child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                const CircleAvatar(
+                                  radius: 70,
+                                  backgroundColor: Colors.white,
                                 ),
-                              ),
-                            ],
+                                ClipPath(
+                                  clipper: avatarClipper(),
+                                  child: Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      Positioned(
+                                        left: -14,
+                                        top: -20,
+                                        child: Image.asset(
+                                          "assets/images/avatar_gabriel.png",
+                                          width: 160,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
 
-                      //rollo juan
-                      Positioned(
-                        left: (size.width / 2) - 160,
-                        top: 10,
-                        child: Image.asset(
-                          "assets/images/rollo_juan.png",
-                          width: 160,
+                        //rollo juan
+                        Positioned(
+                          left: 5,
+                          top: 10,
+                          child: Image.asset(
+                            "assets/images/rollo_juan.png",
+                            width: 160,
+                          ),
                         ),
-                      ),
 
-                      //rollo gabriel
-                      Positioned(
-                        right: (size.width / 2) - 160,
-                        top: 11,
-                        child: Image.asset(
-                          "assets/images/rollo_gabriel.png",
-                          width: 160,
+                        //rollo gabriel
+                        Positioned(
+                          right: 5,
+                          top: 11,
+                          child: Image.asset(
+                            "assets/images/rollo_gabriel.png",
+                            width: 160,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
 
