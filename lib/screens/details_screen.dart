@@ -13,6 +13,10 @@ class DetailsScreen extends StatelessWidget {
     final Movie movieModal =
         ModalRoute.of(context)!.settings.arguments as Movie;
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
+    final Future<List<Movie>> movies = moviesProvider.getRecommendations(
+      movieModal,
+    );
+
     final genres = moviesProvider.movieGenres
         .where((g) => movieModal.genreIds.contains(g.id))
         .toList();
@@ -73,6 +77,18 @@ class DetailsScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   MovieOverview(movie: movieModal),
                   CastingCards(movie: movieModal),
+                  FutureBuilder(
+                    future: movies,
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (!snapshot.hasData) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return CardSwiper(
+                        movies: snapshot.data!,
+                        nextMoviePage: () {},
+                      );
+                    },
+                  ),
                   const SizedBox(height: 40),
                 ]),
               ),

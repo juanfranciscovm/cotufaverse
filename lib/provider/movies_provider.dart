@@ -360,6 +360,8 @@ class MoviesProvider extends ChangeNotifier {
     final response = await _getJsonData('3/movie/${movie.id}/recommendations');
     return Search.fromJson(response).results;
   }
+
+  
 }
 
 enum OrderBy { popular, score, releaseDate }
