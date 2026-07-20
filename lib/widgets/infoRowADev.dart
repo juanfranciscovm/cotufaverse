@@ -2,10 +2,12 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
 Widget infoRowADev({
+  required BuildContext context,
   required String text,
   required String imagePath,
   required bool iconOnLeft,
 }) {
+  final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
   final icon = Image.asset(imagePath, width: 70);
 
   final textWidget = Expanded(
@@ -13,7 +15,7 @@ Widget infoRowADev({
       text,
       textAlign: iconOnLeft ? TextAlign.left : TextAlign.right,
       style: GoogleFonts.poppins(
-        color: Colors.white,
+        color: isDarkMode ? Colors.white : Color(0xFF0C123F),
         fontSize: 15,
         fontWeight: FontWeight.bold,
         height: 1.4,

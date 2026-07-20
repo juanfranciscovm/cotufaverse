@@ -152,16 +152,19 @@ class AboutDevs extends StatelessWidget {
                 ),
 
                 infoRowADev(
+                  context: context,
                   text: AppDictionary.translate(context, "aboutDev1"),
                   imagePath: "assets/images/cotufa_feliz_1.png",
                   iconOnLeft: true,
                 ),
                 infoRowADev(
+                  context: context,
                   text: AppDictionary.translate(context, "aboutDev2"),
                   imagePath: "assets/images/cotufa_feliz_2.png",
                   iconOnLeft: false,
                 ),
                 infoRowADev(
+                  context: context,
                   text: AppDictionary.translate(context, "aboutDev3"),
                   imagePath: "assets/images/cotufa_feliz_1.png",
                   iconOnLeft: true,

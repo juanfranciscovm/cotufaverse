@@ -35,7 +35,7 @@ class AppDictionary {
       'about_devs_sub': 'Conoce al equipo detrás de la app',
 
       //about_devs
-      'about': 'Sobre los',
+      'about': 'Sobre los ',
       'devs': 'devs',
       'aboutDev1':
           'Estudiantes de Ingeniería de Sistemas en la Universidad de Margarita.',
@@ -115,7 +115,7 @@ class AppDictionary {
       'about_devs_sub': 'Meet the team behind the app',
 
       //about_devs
-      'about': 'About the',
+      'about': 'About the ',
       'devs': 'devs',
       'aboutDev1':
           'Students of Systems Engineering in the University of Margarita.',
