@@ -61,7 +61,7 @@ class LoggedProfileScreen extends StatelessWidget {
                             height: 140,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: color
+                              color: color,
                             ),
                             child: ClipOval(
                               child: avatarUrl != null
@@ -150,7 +150,7 @@ class LoggedProfileScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 30,
-                      vertical: 30,
+                      vertical: 50,
                     ),
                     child: SizedBox(
                       width: double.infinity,
