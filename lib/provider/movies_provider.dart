@@ -355,6 +355,11 @@ class MoviesProvider extends ChangeNotifier {
 
     return movieInFavoriteList;
   }
+
+  Future<List<Movie>> getRecommendations(Movie movie) async {
+    final response = await _getJsonData('3/movie/${movie.id}/recommendations');
+    return Search.fromJson(response).results;
+  }
 }
 
 enum OrderBy { popular, score, releaseDate }
