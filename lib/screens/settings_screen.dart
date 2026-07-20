@@ -9,6 +9,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     final settings = Provider.of<SettingsProvider>(context);
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
 
@@ -60,6 +61,7 @@ class SettingsScreen extends StatelessWidget {
               Navigator.pushNamed(context, "/about_devs");
             },
           ),
+          SizedBox(height: size.height* 0.2),
         ],
       ),
     );
