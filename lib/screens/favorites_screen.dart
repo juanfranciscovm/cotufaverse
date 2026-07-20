@@ -26,14 +26,25 @@ class FavoritesScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
         ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: favoriteMovies.isEmpty
-              ? emptyState(context)
-              : SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: CardGrip(movies: favoriteMovies),
-                ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF19226D), Color(0xFF080B27)],
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: favoriteMovies.isEmpty
+                ? emptyState(context)
+                : SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: CardGrip(movies: favoriteMovies),
+                  ),
+          ),
         ),
       ),
     );

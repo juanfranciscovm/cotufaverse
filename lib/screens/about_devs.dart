@@ -17,8 +17,8 @@ class AboutDevs extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         title: TextWithDoubleColor(
           size: size,
-          text1: "Sobre los ",
-          text2: "devs",
+          text1: AppDictionary.translate(context, "about"),
+          text2: AppDictionary.translate(context, "devs"),
           padding: EdgeInsets.zero,
         ),
       ),
@@ -143,19 +143,17 @@ class AboutDevs extends StatelessWidget {
                 ),
 
                 infoRowADev(
-                  text:
-                      "Estudiantes de Ingeniería de Sistemas en la Universidad de Margarita.",
+                  text: AppDictionary.translate(context, "aboutDev1"),
                   imagePath: "assets/images/cotufa_feliz_1.png",
                   iconOnLeft: true,
                 ),
                 infoRowADev(
-                  text: "Nos fascinan las películas y series.",
+                  text: AppDictionary.translate(context, "aboutDev2"),
                   imagePath: "assets/images/cotufa_feliz_2.png",
                   iconOnLeft: false,
                 ),
                 infoRowADev(
-                  text:
-                      "CotufaVerse está elaborada en flutter y dart para la materia de Programación III.",
+                  text: AppDictionary.translate(context, "aboutDev3"),
                   imagePath: "assets/images/cotufa_feliz_1.png",
                   iconOnLeft: true,
                 ),

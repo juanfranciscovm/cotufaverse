@@ -34,6 +34,15 @@ class AppDictionary {
       'about_devs': 'Acerca de los desarrolladores',
       'about_devs_sub': 'Conoce al equipo detrás de la app',
 
+      //about_devs
+      'about': 'Sobre los',
+      'devs': 'devs',
+      'aboutDev1':
+          'Estudiantes de Ingeniería de Sistemas en la Universidad de Margarita.',
+      'aboutDev2': 'Nos fascinan las películas y series.',
+      'aboutDev3':
+          'CotufaVerse está elaborada en flutter y dart para la materia de Programación III.',
+
       //profile
       'movie_lover': 'Cinéfilo',
       'welcome': 'Bienvenido',
@@ -48,8 +57,8 @@ class AppDictionary {
       'no_favorites': 'Aún no tienes películas favoritas.',
 
       //misc
-      'movies':'Películas',
-      'recommended':' Recomendadas',
+      'movies': 'Películas',
+      'recommended': ' Recomendadas',
       'favorites': 'Favoritos',
       'top_movies': 'Top Películas',
       'popular_movies': 'Películas Populares',
@@ -105,9 +114,18 @@ class AppDictionary {
       'about_devs': 'About the developers',
       'about_devs_sub': 'Meet the team behind the app',
 
+      //about_devs
+      'about': 'About the',
+      'devs': 'devs',
+      'aboutDev1':
+          'Students of Systems Engineering in the University of Margarita.',
+      'aboutDev2': 'We love watching movies and series.',
+      'aboutDev3':
+          'Cotufaverse is made in flutter and dart for the subject of Programming III',
+
       //misc
-      'movies':'Recommended',
-      'recommended':' Movies',
+      'movies': 'Recommended',
+      'recommended': ' Movies',
       'favorites': 'Favorites',
       'top_movies': 'Top Movies',
       'popular_movies': 'Popular Movies',

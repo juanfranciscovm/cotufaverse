@@ -25,7 +25,7 @@ class DetailsScreen extends StatelessWidget {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color overlayColor = isDark
         ? const Color.fromARGB(211, 12, 18, 63)
-        : const Color.fromARGB(200, 248, 240, 204);
+        : const Color.fromARGB(255, 255, 255, 255);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -38,7 +38,7 @@ class DetailsScreen extends StatelessWidget {
               errorBuilder: (_, _, _) => Container(
                 color: isDark
                     ? const Color(0xFF0C123F)
-                    : const Color(0xFFF8F0CC),
+                    : const Color.fromARGB(255, 255, 255, 255),
               ),
             ),
           ),
@@ -79,7 +79,11 @@ class DetailsScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   MovieOverview(movie: movieModal),
                   CastingCards(movie: movieModal),
-                  TextWithDoubleColor(size: size, text1: AppDictionary.translate(context, 'movies'), text2: AppDictionary.translate(context, 'recommended')),
+                  TextWithDoubleColor(
+                    size: size,
+                    text1: AppDictionary.translate(context, 'movies'),
+                    text2: AppDictionary.translate(context, 'recommended'),
+                  ),
                   FutureBuilder(
                     future: movies,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
