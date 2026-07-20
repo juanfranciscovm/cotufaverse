@@ -11,6 +11,8 @@ class LoggedProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final Color color = isDarkMode ? Colors.white : const Color(0xFF080B27);
     final size = MediaQuery.of(context).size;
     final moviesProvider = Provider.of<MoviesProvider>(context);
     final account = moviesProvider.account;
@@ -57,9 +59,9 @@ class LoggedProfileScreen extends StatelessWidget {
                           Container(
                             width: 140,
                             height: 140,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.white,
+                              color: color
                             ),
                             child: ClipOval(
                               child: avatarUrl != null
@@ -95,7 +97,7 @@ class LoggedProfileScreen extends StatelessWidget {
                               fontFamily: "AgrandirWide",
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: color,
                             ),
                           ),
 

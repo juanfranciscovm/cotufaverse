@@ -47,6 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final Color color = isDarkMode ? Colors.white : const Color(0xFF080B27);
     final size = MediaQuery.of(context).size;
     MoviesProvider moviesProvider = Provider.of<MoviesProvider>(
       context,
@@ -91,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontFamily: "AgrandirWide",
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: color,
                           height: 1.3,
                         ),
                       ),
