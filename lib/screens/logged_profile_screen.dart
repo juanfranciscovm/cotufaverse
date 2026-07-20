@@ -1,6 +1,5 @@
 import 'package:cotufaverse/provider/movies_provider.dart';
 import 'package:cotufaverse/widgets/widgets.dart';
-import 'package:cotufaverse/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import "package:cotufaverse/themes/app_theme.dart";
@@ -18,7 +17,8 @@ class LoggedProfileScreen extends StatelessWidget {
 
     final String displayName = (account != null && account.name.isNotEmpty)
         ? account.name
-        : (account?.username ?? "Cinéfilo");
+        : (account?.username ??
+              AppDictionary.translate(context, "movie_lover"));
 
     String? avatarUrl;
     if (account?.avatarPath != null) {

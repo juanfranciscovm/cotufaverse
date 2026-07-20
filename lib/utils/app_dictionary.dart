@@ -35,6 +35,7 @@ class AppDictionary {
       'about_devs_sub': 'Conoce al equipo detrás de la app',
 
       //profile
+      'movie_lover': 'Cinéfilo',
       'welcome': 'Bienvenido',
       'see_favorites': 'VER MIS FAVORITOS',
       'login': 'INICIAR SESIÓN',
@@ -80,6 +81,7 @@ class AppDictionary {
       'unknown': 'Unknown',
 
       //profile
+      'movie_lover': 'Movie lover',
       'welcome': 'Welcome',
       'see_favorites': 'SEE MY FAVORITES',
       'login': 'LOG IN',
