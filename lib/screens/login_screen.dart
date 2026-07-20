@@ -68,67 +68,76 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(20.0),
         ),
       ),
-      body: Center(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/images/login_icon.png",
-                        height: size.height * 0.30,
-                        fit: BoxFit.contain,
-                      ),
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/login_icon.png",
+                              height: size.height * 0.30,
+                              fit: BoxFit.contain,
+                            ),
 
-                      const SizedBox(height: 40),
-                      Text(
-                        AppDictionary.translate(context, "login_text"),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: "AgrandirWide",
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: color,
-                          height: 1.3,
+                            const SizedBox(height: 40),
+                            Text(
+                              AppDictionary.translate(context, "login_text"),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: "AgrandirWide",
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: color,
+                                height: 1.3,
+                              ),
+                            ),
+
+                            const SizedBox(height: 50),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 55,
+                              child: ElevatedButton(
+                                onPressed: () => login(moviesProvider),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFFFFC527),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  elevation: 0,
+                                ),
+                                child: Text(
+                                  AppDictionary.translate(context, "login"),
+                                  style: TextStyle(
+                                    fontFamily: "AgrandirWide",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF080B27),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 40),
+                          ],
                         ),
                       ),
-
-                      const SizedBox(height: 50),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 55,
-                        child: ElevatedButton(
-                          onPressed: () => login(moviesProvider),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFFFC527),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            elevation: 0,
-                          ),
-                          child: Text(
-                            AppDictionary.translate(context, "login"),
-                            style: TextStyle(
-                              fontFamily: "AgrandirWide",
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF080B27),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 40),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
