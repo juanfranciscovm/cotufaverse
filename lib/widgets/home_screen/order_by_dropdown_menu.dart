@@ -9,6 +9,8 @@ class OrderByDropdownMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MoviesProvider moviesProvider = Provider.of(context, listen: false);
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final Color color = isDarkMode ? Colors.white : const Color(0xFF080B27);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -19,8 +21,8 @@ class OrderByDropdownMenu extends StatelessWidget {
             Center(
               child: Text(
                 AppDictionary.translate(context, "sort_by"),
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: color,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -48,12 +50,14 @@ class ButtonOrderType extends StatefulWidget {
 class _ButtonOrderTypeState extends State<ButtonOrderType> {
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final Color color = isDarkMode ? Colors.white : const Color(0xFF080B27);
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.all(16),
-        iconColor: Colors.white,
+        iconColor: color,
         shape: const CircleBorder(),
-        side: const BorderSide(color: Colors.white, width: 2),
+        side: BorderSide(color: color, width: 2),
       ),
       onPressed: () {
         setState(() {
@@ -83,20 +87,19 @@ class DropdownMenuOrderBy extends StatefulWidget {
 class _DropdownMenuOrderByState extends State<DropdownMenuOrderBy> {
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final Color color = isDarkMode ? Colors.white : const Color(0xFF080B27);
     return DropdownMenu<OrderBy>(
       initialSelection: widget.moviesProvider.selectedOrderByDiscover,
-      trailingIcon: const Icon(Icons.arrow_drop_down, color: Colors.white),
-      selectedTrailingIcon: const Icon(
-        Icons.arrow_drop_up,
-        color: Colors.white,
-      ),
+      trailingIcon: Icon(Icons.arrow_drop_down, color: color),
+      selectedTrailingIcon: Icon(Icons.arrow_drop_up, color: color),
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.white, width: 2),
+          borderSide: BorderSide(color: color, width: 2),
         ),
       ),
-      textStyle: const TextStyle(color: Colors.white),
+      textStyle: TextStyle(color: color),
       requestFocusOnTap: false,
       onSelected: (value) {
         if (value == null) return;
