@@ -159,6 +159,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          SizedBox(height: 50,)
                         ],
                       ),
                     ),

@@ -65,7 +65,9 @@ class FavoritesScreen extends StatelessWidget {
           Icon(
             Icons.favorite_border_rounded,
             size: 80,
-            color: Color.fromARGB(55, 255, 255, 255),
+            color: isDarkMode
+                  ? Color.fromARGB(179, 255, 255, 255)
+                  : Color.fromARGB(179, 9, 7, 7),
           ),
           SizedBox(height: 20),
           Padding(

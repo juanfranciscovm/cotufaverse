@@ -141,6 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text(AppDictionary.translate(context, 'movie_directory')),
               onTap: () => _scrollToSection(_directoryKey),
             ),
+            SizedBox(height: size.height * 0.2,)
           ],
         ),
       ),
