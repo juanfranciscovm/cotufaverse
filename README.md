@@ -10,11 +10,11 @@ Una aplicación móvil desarrollada en **Flutter** para explorar, buscar y guard
 
 ## ✨ ¿Qué puedes hacer en la app?
 
-* **Explorar:** Descubre películas en cartelera, populares, mejor valoradas y próximos estrenos.
-* **Tu Cuenta TMDB:** Inicia sesión de forma segura con tu cuenta real de The Movie Database. (Solo funciona en un Dispositivo Android)
-* **Favoritos:** Guarda las películas que más te gusten en tu colección personal.
-* **Búsqueda Avanzada:** Encuentra películas por título o fíltralas por género.
-* **Personalización:** Cambia entre Modo Claro/Oscuro y ajusta el idioma (Español/Inglés).
+* **Explorar:** descubre películas en cartelera, populares, mejor valoradas y próximos estrenos.
+* **Tu cuenta TMDB:** inicia sesión de forma segura con tu cuenta real de The Movie Database. (solo funciona en un dispositivo Android)
+* **Favoritos:** guarda las películas que más te gusten en tu colección personal.
+* **Búsqueda avanzada:** encuentra películas por título o fíltralas por género.
+* **Personalización:** cambia entre modo claro/oscuro y ajusta el idioma (soportado español e inglés hasta el momento).
 
 ## 📱 Demostración
 
@@ -23,19 +23,19 @@ Una aplicación móvil desarrollada en **Flutter** para explorar, buscar y guard
 | :---: | :---: | :---: |
 | ![Home](assets/images/example_1.png) | ![Details](assets/images/example_2.png) | ![Config](assets/images/example_3.png) |
 
-## 📲 Descargar la App (APK)
+## 📲 Descargar la app (APK)
 
 
 👉 **[Descargar CotufaVerse APK](https://github.com/juanfranciscovm/cotufaverse/releases/download/Release/app-release.apk)**
 
-*(Nota: Para instalarla, es posible que tu teléfono te pida permisos para "Instalar aplicaciones de orígenes desconocidos").*
+*(Nota: para instalarla, es posible que tu teléfono te pida permisos para "instalar aplicaciones de orígenes desconocidos").*
 
-## 🛠️ Para Desarrolladores (Código Fuente)
+## 🛠️ Para desarrolladores (código fuente)
 
 Si quieres ver cómo está hecha o correr el proyecto en tu máquina local:
 
 1. Clona este repositorio:
-   `git clone https://github.com/tu-usuario/cotufaverse.git`
+   `git clone https://github.com/juanfranciscovm/cotufaverse.git`
 
 2. Instala las dependencias:
    `flutter pub get`
