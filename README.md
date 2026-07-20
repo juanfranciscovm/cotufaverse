@@ -21,7 +21,7 @@ Una aplicación móvil desarrollada en **Flutter** para explorar, buscar y guard
 
 | Home | Details | Config |
 | :---: | :---: | :---: |
-| ![Home](assets//images/example_1.png) | ![Details](assets/example_2.png) | ![Config](assets/example_3.png) |
+| ![Home](assets/images/example_1.png) | ![Details](assets/images/example_2.png) | ![Config](assets/images/example_3.png) |
 
 ## 📲 Descargar la App (APK)
 
