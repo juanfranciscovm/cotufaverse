@@ -1,4 +1,5 @@
 import "dart:ui";
+import "package:cotufaverse/utils/app_dictionary.dart";
 import "package:provider/provider.dart";
 import "package:flutter/material.dart";
 import "package:cotufaverse/models/models.dart";
@@ -10,6 +11,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     final Movie movieModal =
         ModalRoute.of(context)!.settings.arguments as Movie;
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
@@ -77,6 +79,7 @@ class DetailsScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   MovieOverview(movie: movieModal),
                   CastingCards(movie: movieModal),
+                  TextWithDoubleColor(size: size, text1: AppDictionary.translate(context, 'movies'), text2: AppDictionary.translate(context, 'recommended')),
                   FutureBuilder(
                     future: movies,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {

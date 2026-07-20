@@ -47,6 +47,8 @@ class AppDictionary {
           '¡Guarda tus favoritos\nen un solo lugar al\niniciar sesión en tu\ncuenta!',
 
       //misc
+      'movies':'Películas',
+      'recommended':' Recomendadas',
       'favorites': 'Favoritos',
       'top_movies': 'Top Películas',
       'popular_movies': 'Películas Populares',
@@ -102,6 +104,8 @@ class AppDictionary {
       'about_devs_sub': 'Meet the team behind the app',
 
       //misc
+      'movies':'Recommended',
+      'recommended':' Movies',
       'favorites': 'Favorites',
       'top_movies': 'Top Movies',
       'popular_movies': 'Popular Movies',
