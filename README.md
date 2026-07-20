@@ -21,12 +21,12 @@ Una aplicación móvil desarrollada en **Flutter** para explorar, buscar y guard
 
 | Home | Details | Config |
 | :---: | :---: | :---: |
-| ![Alerta](assets/example_1.png) | ![Home](assets/example_2.png) | ![Info](assets/example_3.png) |
+| ![Home](assets//images/example_1.png) | ![Details](assets/example_2.png) | ![Config](assets/example_3.png) |
 
 ## 📲 Descargar la App (APK)
 
 
-👉 **[Descargar CotufaVerse APK](PonerLinkDeLaRelase)**
+👉 **[Descargar CotufaVerse APK](https://drive.google.com/drive/folders/1PnA4mNmvhKX3FCPStGKgTHI2bc_un92R?usp=drive_link)**
 
 *(Nota: Para instalarla, es posible que tu teléfono te pida permisos para "Instalar aplicaciones de orígenes desconocidos").*
 
