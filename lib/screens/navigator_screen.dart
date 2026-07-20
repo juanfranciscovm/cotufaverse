@@ -19,7 +19,6 @@ class _NavigatorState extends State<NavigatorScreen> {
     final MoviesProvider moviesProvider = Provider.of(context);
     final List<Widget> screens = [
       HomeScreen(moviesProvider: moviesProvider),
-      const SearchScreen(),
       !moviesProvider.login
           ? LoginScreen(onLoginComplete: () => setState(() {}))
           : ProfileScreen(),

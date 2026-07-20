@@ -51,21 +51,9 @@ class NavBar extends StatelessWidget {
             fontSize: textSize,
           ),
         ),
-        CurvedNavigationBarItem(
+                CurvedNavigationBarItem(
           child: Icon(
-            currentIndex == 1 ? Icons.search : Icons.search,
-            color: Colors.white,
-            size: iconSize,
-          ),
-          label: AppDictionary.translate(context, "search"),
-          labelStyle: GoogleFonts.poppins(
-            color: Colors.white,
-            fontSize: textSize,
-          ),
-        ),
-        CurvedNavigationBarItem(
-          child: Icon(
-            currentIndex == 4
+            currentIndex == 1
                 ? Icons.account_circle_rounded
                 : Icons.account_circle_outlined,
             color: Colors.white,
@@ -79,7 +67,7 @@ class NavBar extends StatelessWidget {
         ),
         CurvedNavigationBarItem(
           child: Icon(
-            currentIndex == 3 ? Icons.settings : Icons.settings,
+            currentIndex == 2 ? Icons.settings : Icons.settings,
             color: Colors.white,
             size: iconSize,
           ),

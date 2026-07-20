@@ -18,6 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final ScrollController _scrollController = ScrollController();
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey _favoritesKey = GlobalKey();
+  final GlobalKey _topMoviesKey = GlobalKey();
+  final GlobalKey _popularKey = GlobalKey();
+  final GlobalKey _upcomingKey = GlobalKey();
+  final GlobalKey _directoryKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
@@ -54,11 +61,25 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  void _scrollToSection(GlobalKey sectionKey) {
+    Navigator.pop(context);
+
+    if (sectionKey.currentContext != null) {
+      Scrollable.ensureVisible(
+        sectionKey.currentContext!,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
+      key: _scaffoldKey,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(
           bottom: (size.height * 0.1).clamp(60, size.height),
@@ -68,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Icon(Icons.arrow_upward),
                 onPressed: () {
                   setState(() {
-                    activateButton = activateButton = false;
+                    activateButton = false;
                   });
                   _scrollController.animateTo(
                     0,
@@ -80,10 +101,57 @@ class _HomeScreenState extends State<HomeScreen> {
             : const SizedBox(),
       ),
       extendBodyBehindAppBar: true,
+      drawer: Drawer(
+        backgroundColor: isDarkMode ? const Color(0xFF0C123F) : Colors.white,
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Center(
+                child: Image.asset(isDarkMode ?  'assets/images/logoCotufaVerse.png' : 'assets/images/logoCotufaVerseDark.png' ),
+              ),
+            ),
+            widget.moviesProvider.login &&
+                    widget.moviesProvider.favoriteMovies.isNotEmpty
+                ? ListTile(
+                    leading: const Icon(Icons.favorite),
+                    title: Text(AppDictionary.translate(context, 'favorites')),
+                    onTap: () => _scrollToSection(_favoritesKey),
+                  )
+                : const SizedBox(),
+            ListTile(
+              leading: const Icon(Icons.star),
+              title: Text(AppDictionary.translate(context, 'top_movies')),
+              onTap: () => _scrollToSection(_topMoviesKey),
+            ),
+            ListTile(
+              leading: const Icon(Icons.trending_up),
+              title: Text(AppDictionary.translate(context, 'popular_movies')),
+              onTap: () => _scrollToSection(_popularKey),
+            ),
+            ListTile(
+              leading: const Icon(Icons.new_releases),
+              title: Text(
+                AppDictionary.translate(context, 'upcoming') +
+                    AppDictionary.translate(context, 'upcoming_movies'),
+              ),
+              onTap: () => _scrollToSection(_upcomingKey),
+            ),
+            ListTile(
+              leading: const Icon(Icons.folder),
+              title: Text(AppDictionary.translate(context, 'movie_directory')),
+              onTap: () => _scrollToSection(_directoryKey),
+            ),
+          ],
+        ),
+      ),
       appBar: CustomAppBar(
         size: size,
-        searchButtonAction: () {},
-        menuButtonAction: () {},
+        searchButtonAction: () {
+          Navigator.pushNamed(context, '/search');
+        },
+        menuButtonAction: () {
+          _scaffoldKey.currentState?.openDrawer();
+        },
       ),
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
@@ -101,20 +169,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 genres: widget.moviesProvider.movieGenres,
               ),
               // Poner al configurar el usuario, si no borrar
-              widget.moviesProvider.login && widget.moviesProvider.favoriteMovies.isNotEmpty
+              widget.moviesProvider.login &&
+                      widget.moviesProvider.favoriteMovies.isNotEmpty
                   ? TextWithDoubleColor(
+                      key: _favoritesKey,
                       size: size,
                       text1: AppDictionary.translate(context, 'favorites'),
                       text2: '.',
                     )
                   : const SizedBox(),
-              widget.moviesProvider.login && widget.moviesProvider.favoriteMovies.isNotEmpty
+              widget.moviesProvider.login &&
+                      widget.moviesProvider.favoriteMovies.isNotEmpty
                   ? CardSwiper(
                       movies: widget.moviesProvider.favoriteMovies,
                       nextMoviePage: widget.moviesProvider.getFavoriteMovies,
                     )
                   : const SizedBox(),
               TextWithDoubleColor(
+                key: _topMoviesKey,
                 size: size,
                 text1: AppDictionary.translate(context, "top_movies"),
                 text2: '.',
@@ -124,6 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 nextMoviePage: widget.moviesProvider.getTopRatedMovies,
               ),
               TextWithDoubleColor(
+                key: _popularKey,
                 size: size,
                 text1: AppDictionary.translate(context, "popular_movies"),
                 text2: '.',
@@ -133,6 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 nextMoviePage: widget.moviesProvider.getPopularMovies,
               ),
               TextWithDoubleColor(
+                key: _upcomingKey,
                 size: size,
                 text1: AppDictionary.translate(context, "upcoming"),
                 text2: AppDictionary.translate(context, "upcoming_movies"),
@@ -143,6 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 nextMoviePage: widget.moviesProvider.getUpcomingMovies,
               ),
               TextWithDoubleColor(
+                key: _directoryKey,
                 size: size,
                 text1: AppDictionary.translate(context, "movie_directory"),
                 text2: '.',
