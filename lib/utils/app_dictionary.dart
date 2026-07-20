@@ -45,6 +45,7 @@ class AppDictionary {
       'login_error': 'Error al iniciar sesión',
       'login_text':
           '¡Guarda tus favoritos\nen un solo lugar al\niniciar sesión en tu\ncuenta!',
+      'no_favorites': 'Aún no tienes películas favoritas.',
 
       //misc
       'favorites': 'Favoritos',
@@ -91,6 +92,7 @@ class AppDictionary {
       'login_error': 'Something went wrong when logging in',
       'login_text':
           '¡Keep your favorites\nin one place\nwhen logging into\nyour account!',
+      'no_favorites': 'No favorite movies to display',
 
       //config
       'dark_mode': 'Dark mode',
