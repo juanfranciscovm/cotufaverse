@@ -117,7 +117,10 @@ class AppDictionary {
   };
 
   static String translate(BuildContext context, String key) {
-    final isEnglish = Provider.of<SettingsProvider>(context).isEnglish;
+    final isEnglish = Provider.of<SettingsProvider>(
+      context,
+      listen: false,
+    ).isEnglish;
     final lang = isEnglish ? 'en' : 'es';
     return _dict[lang]?[key] ?? key;
   }
