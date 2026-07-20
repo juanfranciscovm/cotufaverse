@@ -4,6 +4,7 @@ Una aplicación móvil desarrollada en **Flutter** para explorar, buscar y guard
 
 ## 👥 Autores
 
+Somos estudiantes de Ingeniería de Sistemas en la Universidad de Margarita y este es nuestro proyecto final de la materia de Programación III.
 - [@Acthel12](https://github.com/Acthel12)
 - [@juanfranciscovm](https://github.com/juanfranciscovm)
 
