@@ -115,7 +115,7 @@ class AppDictionary {
       'about_devs_sub': 'Meet the team behind the app',
 
       //about_devs
-      'about': 'About the ',
+      'about': 'About ',
       'devs': 'devs',
       'aboutDev1':
           'Students of Systems Engineering in the University of Margarita.',
