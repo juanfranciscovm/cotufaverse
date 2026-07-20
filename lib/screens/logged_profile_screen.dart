@@ -97,7 +97,7 @@ class LoggedProfileScreen extends StatelessWidget {
                       const SizedBox(height: 30),
                       Image.asset(
                         "assets/images/favorite_icon.png",
-                        height: 60,
+                        height: 80,
                         fit: BoxFit.contain,
                       ),
 
