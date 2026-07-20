@@ -132,7 +132,9 @@ class AboutDevs extends StatelessWidget {
                           left: 5,
                           top: 10,
                           child: Image.asset(
-                            "assets/images/rollo_juan.png",
+                            isDarkMode
+                                ? "assets/images/rollo_juan_oscuro.png"
+                                : "assets/images/rollo_juan_claro.png",
                             width: 160,
                           ),
                         ),
@@ -142,7 +144,9 @@ class AboutDevs extends StatelessWidget {
                           right: 5,
                           top: 11,
                           child: Image.asset(
-                            "assets/images/rollo_gabriel.png",
+                            isDarkMode
+                                ? "assets/images/rollo_gabriel_oscuro.png"
+                                : "assets/images/rollo_gabriel_claro.png",
                             width: 160,
                           ),
                         ),
