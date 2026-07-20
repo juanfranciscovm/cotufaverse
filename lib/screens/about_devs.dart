@@ -8,13 +8,16 @@ class AboutDevs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(
+          color: isDarkMode ? Colors.white : Color(0xFF0C123F),
+        ),
         title: TextWithDoubleColor(
           size: size,
           text1: AppDictionary.translate(context, "about"),
@@ -25,11 +28,13 @@ class AboutDevs extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(255, 39, 52, 168), Color(0xFF080B27)],
+            colors: isDarkMode
+                ? [Color.fromARGB(255, 39, 52, 168), Color(0xFF080B27)]
+                : [Colors.white, Colors.white],
           ),
         ),
         child: SafeArea(
@@ -59,9 +64,11 @@ class AboutDevs extends StatelessWidget {
                             child: Stack(
                               clipBehavior: Clip.none,
                               children: [
-                                const CircleAvatar(
+                                CircleAvatar(
                                   radius: 70,
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: isDarkMode
+                                      ? Colors.white
+                                      : Color(0xFF0C123F),
                                 ),
                                 ClipPath(
                                   clipper: avatarClipper(),
@@ -93,9 +100,11 @@ class AboutDevs extends StatelessWidget {
                             child: Stack(
                               clipBehavior: Clip.none,
                               children: [
-                                const CircleAvatar(
+                                CircleAvatar(
                                   radius: 70,
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: isDarkMode
+                                      ? Colors.white
+                                      : Color(0xFF0C123F),
                                 ),
                                 ClipPath(
                                   clipper: avatarClipper(),

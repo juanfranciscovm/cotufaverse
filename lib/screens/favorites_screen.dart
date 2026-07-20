@@ -12,12 +12,16 @@ class FavoritesScreen extends StatelessWidget {
     final moviesProvider = context.watch<MoviesProvider>();
     final favoriteMovies = moviesProvider.favoriteMovies;
     final size = MediaQuery.of(context).size;
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        iconTheme: IconThemeData(
+          color: isDarkMode ? Colors.white : Color(0xFF0C123F),
+        ),
         toolbarHeight: size.height * 0.1,
         title: TextWithDoubleColor(
           size: size,
@@ -29,11 +33,13 @@ class FavoritesScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF19226D), Color(0xFF080B27)],
+            colors: isDarkMode
+                ? [Color.fromARGB(255, 39, 52, 168), Color(0xFF080B27)]
+                : [Colors.white, Colors.white],
           ),
         ),
         child: SingleChildScrollView(
@@ -51,6 +57,7 @@ class FavoritesScreen extends StatelessWidget {
   }
 
   Widget emptyState(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +73,9 @@ class FavoritesScreen extends StatelessWidget {
             style: TextStyle(
               fontFamily: "AgrandirWide",
               fontSize: 18,
-              color: Color.fromARGB(179, 255, 255, 255),
+              color: isDarkMode
+                  ? Color.fromARGB(179, 255, 255, 255)
+                  : Color.fromARGB(179, 9, 7, 7),
             ),
           ),
         ],
