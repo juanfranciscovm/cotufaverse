@@ -68,14 +68,18 @@ class FavoritesScreen extends StatelessWidget {
             color: Color.fromARGB(55, 255, 255, 255),
           ),
           SizedBox(height: 20),
-          Text(
-            AppDictionary.translate(context, "no_favorites"),
-            style: TextStyle(
-              fontFamily: "AgrandirWide",
-              fontSize: 18,
-              color: isDarkMode
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text(
+              AppDictionary.translate(context, "no_favorites"),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: "AgrandirWide",
+                fontSize: 18,
+                color: isDarkMode
                   ? Color.fromARGB(179, 255, 255, 255)
                   : Color.fromARGB(179, 9, 7, 7),
+              ),
             ),
           ),
         ],
