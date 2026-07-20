@@ -48,6 +48,8 @@ class AppDictionary {
       'no_favorites': 'Aún no tienes películas favoritas.',
 
       //misc
+      'movies':'Películas',
+      'recommended':' Recomendadas',
       'favorites': 'Favoritos',
       'top_movies': 'Top Películas',
       'popular_movies': 'Películas Populares',
@@ -104,6 +106,8 @@ class AppDictionary {
       'about_devs_sub': 'Meet the team behind the app',
 
       //misc
+      'movies':'Recommended',
+      'recommended':' Movies',
       'favorites': 'Favorites',
       'top_movies': 'Top Movies',
       'popular_movies': 'Popular Movies',
