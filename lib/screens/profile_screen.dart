@@ -15,9 +15,7 @@ class ProfileScreen extends StatelessWidget {
         onLogoutComplete: () {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                AppDictionary.translate(context, "logout_successful"),
-              ),
+              content: Text(AppDictionary.translate(context, "logout_success")),
               backgroundColor: Colors.green,
               duration: Duration(seconds: 2),
             ),
@@ -29,9 +27,7 @@ class ProfileScreen extends StatelessWidget {
         onLoginComplete: () {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                AppDictionary.translate(context, "login_successful"),
-              ),
+              content: Text(AppDictionary.translate(context, "login_success")),
               backgroundColor: Colors.green,
               duration: Duration(seconds: 2),
             ),
