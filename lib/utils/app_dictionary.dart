@@ -34,6 +34,17 @@ class AppDictionary {
       'about_devs': 'Acerca de los desarrolladores',
       'about_devs_sub': 'Conoce al equipo detrás de la app',
 
+      //profile
+      'welcome': 'Bienvenido',
+      'see_favorites': 'VER MIS FAVORITOS',
+      'login': 'INICIAR SESIÓN',
+      'logout': 'CERRAR SESIÓN',
+      'logout_success': 'Sesión cerrada correctamente',
+      'login_success': 'Sesión iniciada correctamente',
+      'login_error': 'Error al iniciar sesión',
+      'login_text':
+          '¡Guarda tus favoritos\nen un solo lugar al\niniciar sesión en tu\ncuenta!',
+
       //misc
       'favorites': 'Favoritos',
       'top_movies': 'Top Películas',
@@ -67,6 +78,17 @@ class AppDictionary {
       //detalles
       'cast': 'Cast',
       'unknown': 'Unknown',
+
+      //profile
+      'welcome': 'Welcome',
+      'see_favorites': 'SEE MY FAVORITES',
+      'login': 'LOG IN',
+      'logout': 'LOG OUT',
+      'logout_success': 'Logged out successful',
+      'login_success': 'Logged in successful',
+      'login_error': 'Something went wrong when logging in',
+      'login_text':
+          '¡Keep your favorites\nin one place\nwhen logging into\nyour account!',
 
       //config
       'dark_mode': 'Dark mode',
